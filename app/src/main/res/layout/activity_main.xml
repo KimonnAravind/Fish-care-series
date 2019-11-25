@@ -22,6 +22,8 @@
         android:background="@drawable/button"
         android:text="@string/button1" />
 
+
+
     <Button
         android:id="@+id/button3"
         android:layout_width="234dp"

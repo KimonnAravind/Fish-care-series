@@ -82,7 +82,7 @@
     <string name="title_activity_final">FinalActivity</string>
     <string name="title_activity_usermain">UsermainActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="product_name1">Product Name</string>
+    <string name="product_name12">Product Name</string>
     <string name="title_activity_main3">Main3Activity</string>
     <string name="title_activity_endusers">endusers</string>
     <string name="user_name">user name</string>
@@ -91,6 +91,32 @@
     <string name="change">Change</string>
     <string name="change_profile_picture">Change Profile Picture</string>
     <string name="full_name">Full Name</string>
+    <string name="addresss">Address</string>
+    <string name="next_page">Next Page</string>
+    <string name="you_are_here_now">You are Here now</string>
+    <string name="product_name11">Product Name</string>
+    <string name="product_price1">Product Price</string>
+    <string name="_0">0</string>
+    <string name="dec">-</string>
+    <string name="inc">+</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="total_price">Total Price =</string>
+    <string name="next_step">Next Step</string>
+    <string name="product_quantity">Product Quantity</string>
+    <string name="product_name1">Product Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="pricee">Price</string>
+    <string name="please_confirm_your_shipment_details">Please confirm your Shipment details</string>
+    <string name="name_for_delivrty_address">Name for delivrty address</string>
+    <string name="pin_code">Pin code</string>
+    <string name="enter_address_here">Enter address here</string>
+    <string name="alternate_phone_number">Alternate Phone number</string>
+    <string name="congrads_your_order_has_been_placed_successfully">Congrads Your order has been placed successfully!</string>
+    <string name="ordered_user_name">Ordered user name</string>
+    <string name="totalamt">Total amount</string>
     <string name="address">Address</string>
+    <string name="pincode">Pincode</string>
+    <string name="date">Date</string>
+    <string name="tim">Time</string>
 
 </resources>

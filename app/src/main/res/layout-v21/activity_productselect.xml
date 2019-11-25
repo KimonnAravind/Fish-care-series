@@ -10,12 +10,14 @@
 
     <ImageView
         android:id="@+id/productImagedetails"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_width="316dp"
+        android:layout_height="184dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="68dp"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/input_design"
         android:contentDescription=""
         android:scaleType="centerCrop" />
@@ -67,22 +69,60 @@
         android:padding="15dp"
         android:text="@string/product_price1"
         android:textColor="@android:color/black"
-
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="86dp"
+        android:layout_height="43dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="212dp"
+        android:background="@drawable/input_design"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:text=""
+        android:textStyle="bold" />
 
-    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-        app:initialNumber="1"
-        android:layout_width="281dp"
-        android:layout_height="75dp"
-        android:elevation="6dp"
-        app:textSize="16sp"
+    <Button
+        android:id="@+id/Decrement"
+        android:layout_width="86dp"
+        android:layout_height="43dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="62dp"
-        android:layout_marginBottom="58dp">
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="210dp"
+        android:background="@drawable/button"
+        android:text="@string/dec"
+        android:textSize="25sp" />
 
-    </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
+    <Button
+        android:id="@+id/Increment"
+        android:layout_width="86dp"
+        android:layout_height="43dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="268dp"
+        android:layout_marginBottom="211dp"
+        android:background="@drawable/button"
+        android:text="@string/inc"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/addproducttocart"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:padding="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="626dp"
+        android:background="@drawable/button"
+        android:text="@string/add_to_cart" />
 
 </RelativeLayout>

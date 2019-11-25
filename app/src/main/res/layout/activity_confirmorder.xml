@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".confirmorderActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt"
+        android:text="@string/please_confirm_your_shipment_details"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:padding="20sp"
+        />
+
+    <EditText
+        android:id="@+id/shimentnametext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_for_delivrty_address"
+        android:textAlignment="center"
+        android:inputType="text"
+        android:padding="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp" />
+
+    <EditText
+        android:padding="20dp"
+        android:id="@+id/shippingphonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shimentnametext"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="218dp"
+        android:hint="@string/alternate_phone_number"
+        android:inputType="phone"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/shippingaddress"
+        android:layout_width="390dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="278dp"
+        android:hint="@string/enter_address_here"
+        android:inputType="textMultiLine"
+        android:textAlignment="center" />
+
+
+    <EditText
+        android:padding="20dp"
+        android:id="@+id/shippingpincode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="383dp"
+        android:inputType="textMultiLine"
+        android:hint="@string/pin_code"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/placeorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Place order"
+        android:inputType="number"
+        android:background="@drawable/button"
+        android:layout_marginBottom="20dp" />
+
+</RelativeLayout>

@@ -16,7 +16,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="132dp"
             android:layout_marginEnd="44dp"
-          
+
             android:text="Product Name"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"

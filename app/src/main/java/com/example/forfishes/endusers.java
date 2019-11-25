@@ -1,45 +1,37 @@
 package com.example.forfishes;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forfishes.Fish.Prevalent.Prevalent;
 import com.example.forfishes.Model.Products;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.Menu;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -58,6 +50,8 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endusers);
 
+
+
         productRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -70,9 +64,10 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View view)
+            {
+                Intent intent= new Intent(endusers.this, CartActivity.class);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -95,7 +90,11 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+
     }
+
+
 
     @Override
     protected void onStart() {
@@ -105,11 +104,20 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
                         .build();
         FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>adapter=new FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull com.example.forfishes.ProductViewHolder holder, int position, @NonNull Products model) {
+            protected void onBindViewHolder(@NonNull com.example.forfishes.ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText(model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent= new Intent(endusers.this,productselect.class);
+                        intent.putExtra("pid", model.getPid());
+                        startActivity(intent);
+                    }
+                });
 
 
             }
@@ -172,6 +180,8 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
 
         if(id== R.id.nav_cart)
         {
+            Intent intent= new Intent(endusers.this, CartActivity.class);
+            startActivity(intent);
 
         }
         else  if(id== R.id.nav_orders)

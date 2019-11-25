@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity">
+
+    <RelativeLayout
+        android:id="@+id/frree"
+        android:layout_width="382dp"
+        android:layout_height="89dp"
+        android:background="@drawable/button">
+
+        <TextView
+            android:id="@+id/totalpriceamount"
+            android:layout_width="185dp"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/input_design"
+            android:text="" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/input_design"
+        android:textAlignment="center"
+        android:id="@+id/messageafterorder"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        android:text="@string/congrads_your_order_has_been_placed_successfully" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_list"
+        android:layout_width="355dp"
+        android:layout_height="638dp"
+        android:layout_below="@+id/frree"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="-16dp"
+        android:layout_marginBottom="58dp"
+        android:overScrollMode="never">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/nextbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button"
+        android:padding="20sp"
+        android:text="@string/next_step"
+        />
+
+</RelativeLayout>

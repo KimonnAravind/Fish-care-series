@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".paymentActivity"
+    >
+
+    <EditText
+        android:id="@+id/payeename"
+        android:layout_width="189dp"
+        android:layout_height="84dp"
+        android:hint="@string/payee_name"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:inputType="textPersonName"
+        android:padding="20dp"
+        android:background="@drawable/input_design"/>
+
+    <EditText
+        android:id="@+id/payeeID"
+        android:layout_width="189dp"
+        android:layout_height="84dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="237dp"
+        android:background="@drawable/input_design"
+        android:hint="@string/upi_id"
+        android:padding="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/payment"
+        android:layout_width="189dp"
+        android:layout_height="84dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="347dp"
+        android:background="@drawable/input_design"
+        android:hint="@string/amount"
+        android:padding="20dp"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/paywithgl"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="246dp"
+        android:background="@drawable/button"
+        android:padding="20sp"
+        android:textSize="20sp"
+        android:text="Pay with G-Pay"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/transactionID"
+        android:layout_width="332dp"
+        android:layout_height="98dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/input_design" />
+
+</RelativeLayout>

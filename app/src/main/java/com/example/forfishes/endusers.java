@@ -41,6 +41,7 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
     private AppBarConfiguration mAppBarConfiguration;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    private String type="";
 
 
     private DatabaseReference productRef;
@@ -49,6 +50,13 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endusers);
+
+        Intent intent= getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle!= null)
+        {
+            type=getIntent().getExtras().get("Admin").toString();
+        }
 
 
 
@@ -66,9 +74,16 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
             @Override
             public void onClick(View view)
             {
-                Intent intent= new Intent(endusers.this, CartActivity.class);
-                startActivity(intent);
-            }
+                if(!type.equals("Admin"))
+                {
+                    Intent intent= new Intent(endusers.this, CartActivity.class);
+                    startActivity(intent);
+                }
+                }
+
+
+
+
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
@@ -84,8 +99,11 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         TextView userNamTextView= headerView.findViewById(R.id.user_profile_name);
         CircleImageView userProfilePicture= headerView.findViewById(R.id.user_profile_image);
 
-        userNamTextView.setText(Prevalent.currentOnlineuser.getName());
-        Picasso .get().load(Prevalent.currentOnlineuser.getImage()).placeholder(R.drawable.profile).into(userProfilePicture);
+        if(!type.equals("Admin"))
+        {
+            userNamTextView.setText(Prevalent.currentOnlineuser.getName());
+            Picasso .get().load(Prevalent.currentOnlineuser.getImage()).placeholder(R.drawable.profile).into(userProfilePicture);
+        }
         recyclerView= findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -113,9 +131,22 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent= new Intent(endusers.this,productselect.class);
-                        intent.putExtra("pid", model.getPid());
-                        startActivity(intent);
+
+                        if(type.equals("Admin"))
+                        {
+                            Intent intent= new Intent(endusers.this,AdminAlterActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            startActivity(intent);
+
+                        }
+                        else
+                        {
+                            Intent intent= new Intent(endusers.this,productselect.class);
+                            intent.putExtra("pid", model.getPid());
+                            startActivity(intent);
+                        }
+
+
                     }
                 });
 
@@ -180,31 +211,57 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
 
         if(id== R.id.nav_cart)
         {
-            Intent intent= new Intent(endusers.this, CartActivity.class);
-            startActivity(intent);
+
+            if(!type.equals("Admin"))
+            {
+                Intent intent= new Intent(endusers.this, CartActivity.class);
+                startActivity(intent);
+
+            }
+
 
         }
-        else  if(id== R.id.nav_orders)
+        else  if(id== R.id.nav_search)
         {
+            if(!type.equals("Admin"))
+            {
+                Intent intent = new Intent(endusers.this,SearchproductActivity.class);
+                startActivity(intent);
+
+            }
+
 
         }
         else if(id== R.id.nav_category)
         {
+            if(!type.equals("Admin"))
+            {
+
+            }
 
         }
         else  if(id== R.id.nav_setting)
         {
-            Intent intent = new Intent(endusers.this,SettingsActivity.class);
-            startActivity(intent);
+            if(!type.equals("Admin"))
+            {Intent intent = new Intent(endusers.this,SettingsActivity.class);
+                startActivity(intent);
+
+
+            }
 
         }
         else if(id== R.id.nav_logout)
         {
-            Toast.makeText(this, "Here", Toast.LENGTH_SHORT).show();
-            Paper.book().destroy();
-            Intent intent = new Intent(endusers.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            if(!type.equals("Admin"))
+            {
+                Toast.makeText(this, "Here", Toast.LENGTH_SHORT).show();
+                Paper.book().destroy();
+                Intent intent = new Intent(endusers.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+            }
+
 
         }
 

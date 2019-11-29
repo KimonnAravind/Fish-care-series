@@ -96,15 +96,44 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/alterdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="114dp"
+        android:background="@drawable/button"
+        android:text="Customise product Details"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
         android:id="@+id/placedorder1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="69dp"
-        android:layout_marginBottom="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="81dp"
+        android:layout_marginBottom="66dp"
         android:background="@drawable/button"
-        android:text="Check placed orders"
+        android:text="@string/check_placed_orders"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/LogoutBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/button"
+        android:text="@string/Logout"
         android:textSize="20sp"
         android:textStyle="bold" />
 </RelativeLayout>

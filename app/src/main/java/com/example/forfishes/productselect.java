@@ -72,7 +72,7 @@ public class productselect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addingtocartList();
-                
+
             }
         });
     }
@@ -104,23 +104,26 @@ public class productselect extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                   if(task.isSuccessful())
-                   {
-                       cartListRef.child("Admin View").child(Prevalent.currentOnlineuser.getPhone())
-                               .child("Products").child(productID).updateChildren(cartMap)
-                               .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                   @Override
-                                   public void onComplete(@NonNull Task<Void> task)
-                                   {
-                                    if(task.isSuccessful())
-                                    {
-                                        Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(productselect.this, endusers.class);
-                                                startActivity(intent);
-                                    }
-                                   }
-                               });
-                   }
+                        if(task.isSuccessful())
+                        {
+
+
+                            cartListRef.child("Admin View").child(Prevalent.currentOnlineuser.getPhone())
+                                    .child("Products").child(productID).updateChildren(cartMap)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task)
+                                        {
+                                            if(task.isSuccessful())
+                                            {
+                                            Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(productselect.this, endusers.class);
+                            startActivity(intent);
+
+                                            }
+                                        }
+                                    });
+                        }
                     }
                 });
 

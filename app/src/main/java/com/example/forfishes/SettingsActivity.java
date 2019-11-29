@@ -1,10 +1,5 @@
 package com.example.forfishes;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.forfishes.Fish.Prevalent.Prevalent;
 import com.google.android.gms.tasks.Continuation;
@@ -44,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
     private String myUrl="";
     private StorageReference storageProfilePictureRef;
     private String checker = "";
-    private RecyclerView recyclerView;
+
 
 
     @Override
@@ -54,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         storageProfilePictureRef= FirebaseStorage.getInstance().getReference().child("Profile pictures");
 
-        recyclerView=(RecyclerView)findViewById(R.id.recycler_menu);
+
         profileimageview= (CircleImageView)findViewById(R.id.setting_profileimage);
         fullname=(EditText)findViewById(R.id.settingfullname);
         userphone=(EditText)findViewById(R.id.settingPhonenumber);
@@ -99,14 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, productselect.class);
-                startActivity(intent);
             }
-        });
-    }
 
     private void updateOnlyuserInfo()
     {

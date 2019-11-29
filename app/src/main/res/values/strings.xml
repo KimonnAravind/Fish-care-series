@@ -54,7 +54,7 @@
     <string name="enter_otp">Enter OTP</string>
     <string name="adding_new_product">Adding new Product</string>
     <string name="product_name">product name</string>
-    <string name="product_description">Product Description</string>
+    <string name="product_descriptions">Product Description</string>
     <string name="product_description1">Product Description</string>
     <string name="product_price">product_price</string>
     <string name="add_product">Add Product</string>
@@ -118,5 +118,18 @@
     <string name="pincode">Pincode</string>
     <string name="date">Date</string>
     <string name="tim">Time</string>
+    <string name="payee_name">PAYEE NAME</string>
+    <string name="amount">Amount</string>
+    <string name="upi_id">UPI id</string>
+    <string name="remove">Remove</string>
+    <string name="enter_product_name_you_want_to_buy">Enter product name you want to buy</string>
+    <string name="searchpro">Search Product</string>
+    <string name="search">Search</string>
+    <string name="check_placed_orders">Check placed orders</string>
+    <string name="apply_changes">Apply changes</string>
+    <string name="product_description">Product Description</string>
+    <string name="product_pricess">Product Price</string>
+    <string name="product_namess">Product Name</string>
+    <string name="delete_prodcuct">Delete prodcuct</string>
 
 </resources>

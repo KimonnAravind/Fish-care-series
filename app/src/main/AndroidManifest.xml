@@ -3,6 +3,10 @@
     package="com.example.forfishes">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -13,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".placedordersActivity"></activity>
+        <activity android:name=".AdminAlterActivity"></activity>
+        <activity android:name=".SearchproductActivity" />
+        <activity android:name=".paymentActivity" />
+        <activity android:name=".UserplacedActivity" />
+        <activity android:name=".placedordersActivity" />
         <activity android:name=".confirmorderActivity" />
         <activity android:name=".CartActivity" />
         <activity android:name=".productselect" />

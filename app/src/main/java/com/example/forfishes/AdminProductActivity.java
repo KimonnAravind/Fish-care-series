@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AdminProductActivity extends AppCompatActivity {
     private ImageView fish,accessories,food;
     private Button placedorderbtn;
+    private Button alterdata,LogoutBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,30 @@ public class AdminProductActivity extends AppCompatActivity {
         fish=(ImageView) findViewById(R.id.fish);
         accessories=(ImageView) findViewById(R.id.aquariumaccessories);
         food=(ImageView)findViewById(R.id.food);
+        alterdata=(Button)findViewById(R.id.alterdata);
+        LogoutBTN=(Button)findViewById(R.id.LogoutBTN);
+
+        alterdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminProductActivity.this , endusers.class );
+                intent.putExtra("Admin","Admin");
+
+                startActivity(intent);
+
+            }
+        });
+
+        LogoutBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminProductActivity.this , MainActivity.class );
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         fish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

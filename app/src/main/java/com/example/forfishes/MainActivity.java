@@ -1,8 +1,5 @@
 package com.example.forfishes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +7,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.forfishes.Fish.Prevalent.Prevalent;
 import com.example.forfishes.Model.Users;
@@ -23,7 +23,7 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-  private Button Joinnowbutton, Existinguserbutton;
+  private Button Joinnowbutton, Existinguserbutton, gotopayment;
     private ProgressDialog loadingBar1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
        setContentView(R.layout.activity_main);
        Joinnowbutton=(Button)findViewById(R.id.button2);
         Existinguserbutton=(Button)findViewById(R.id.button3);
+        gotopayment=(Button)findViewById(R.id.paymentpage);
         loadingBar1= new ProgressDialog(this);
         Paper.init(this);
         Existinguserbutton.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        gotopayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this, paymentActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Joinnowbutton.setOnClickListener(new View.OnClickListener() {
             @Override

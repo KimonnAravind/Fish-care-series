@@ -4,64 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
+    android:background="@drawable/login1"
+    android:layout_centerInParent="true"
     tools:context=".AdminActivity">
+
 
     <ImageView
         android:id="@+id/selectProduct"
-        android:layout_width="274dp"
-        android:layout_height="207dp"
+        android:layout_width="225dp"
+        android:layout_height="199dp"
         android:layout_alignParentStart="true"
-
         android:layout_alignParentTop="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="225dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="206dp"
         android:src="@drawable/uploadimage" />
-
 
     <EditText
         android:id="@+id/productName1"
-        android:layout_width="274dp"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="46dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="269dp"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="301dp"
         android:background="@drawable/input_design"
         android:hint="@string/product_name"
         android:inputType="text"
-        android:padding="20dp" />
+         />
 
     <EditText
         android:id="@+id/productDescription1"
-        android:layout_width="274dp"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+
+        android:layout_height="46dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="191dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="244dp"
         android:background="@drawable/input_design"
         android:hint="@string/product_description1"
         android:inputType="textMultiLine"
-        android:padding="20dp" />
+
+         />
 
     <EditText
         android:id="@+id/productPrice1"
-        android:layout_width="274dp"
-        android:layout_height="wrap_content"
+
+        android:layout_width="255dp"
+
+        android:layout_height="46dp"
+
+
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="108dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="185dp"
         android:background="@drawable/input_design"
         android:hint="@string/product_price"
-        android:inputType="number"
-        android:padding="20dp" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/AddProduct1"
-        android:layout_width="250dp"
-        android:layout_height="58dp"
+        android:layout_width="191dp"
+        android:layout_height="36dp"
         android:layout_alignParentBottom="true"
-        android:text="@string/add_product"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
-        android:background="@drawable/button" />
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/button"
+        android:text="@string/add_product" />
 </RelativeLayout>

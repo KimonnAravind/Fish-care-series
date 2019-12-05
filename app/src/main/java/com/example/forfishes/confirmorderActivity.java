@@ -43,7 +43,6 @@ public class confirmorderActivity extends AppCompatActivity {
             }
         });
     }
-
 private void checkmethod()
 {
     if(TextUtils.isEmpty(name.getText().toString()))
@@ -78,6 +77,7 @@ private void confirmation()
 
     SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
     savecurrentTime= currentdate.format(calfordate.getTime());
+   final String rands= savecurrentDate+savecurrentTime;
 
     final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("Orders")
             .child(Prevalent.currentOnlineuser.getPhone());
@@ -91,13 +91,13 @@ private void confirmation()
     ordersMap.put("date", savecurrentDate);
     ordersMap.put("time", savecurrentTime);
     ordersMap.put("state", "not shipped");
-
     ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
         @Override
         public void onComplete(@NonNull Task<Void> task) {
-
             if(task.isSuccessful())
             {
+
+
                 FirebaseDatabase.getInstance().getReference()
                         .child("Cart List")
                         .child("User View")
@@ -110,20 +110,40 @@ private void confirmation()
                                 {
                                     Toast.makeText(confirmorderActivity.this, "Your order has been placed successfully", Toast.LENGTH_SHORT).show();
                                     Intent intent= new Intent(confirmorderActivity.this , endusers.class);
+
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
                                     startActivity(intent);
                                 }
-
                             }
                         });
+            }
+        }
+    });
+    final DatabaseReference ordersRefs= FirebaseDatabase.getInstance().getReference().child("Orders1")
+            .child(Prevalent.currentOnlineuser.getPhone());
+    HashMap<String ,Object> ordersMaps=new HashMap<>();
 
+    ordersMaps.put("totalamount", totalamount);
+    ordersMaps.put("name", name.getText().toString());
+    ordersMaps.put("phone", phone.getText().toString());
+    ordersMaps.put("Address",address.getText().toString());
+    ordersMaps.put("Pincode", pincode.getText().toString());
+    ordersMaps.put("date", savecurrentDate);
+    ordersMaps.put("time", savecurrentTime);
+    ordersMaps.put("state", "not shipped");
+    ordersRefs.updateChildren(ordersMaps).addOnCompleteListener(new OnCompleteListener<Void>() {
+        @Override
+        public void onComplete(@NonNull Task<Void> task) {
+            if(task.isSuccessful())
+            {
+                Toast.makeText(confirmorderActivity.this, "Done", Toast.LENGTH_SHORT).show();
             }
         }
     });
 
-
-
-
 }
+
+
+
 }
 

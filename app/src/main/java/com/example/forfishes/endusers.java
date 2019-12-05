@@ -236,7 +236,8 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         {
             if(!type.equals("Admin"))
             {
-
+            Intent intent =new Intent(endusers.this, MyordersActivity.class);
+            startActivity(intent);
             }
 
         }

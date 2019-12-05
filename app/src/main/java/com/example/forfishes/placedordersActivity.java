@@ -25,8 +25,6 @@ public class placedordersActivity extends AppCompatActivity {
 
     private RecyclerView orderList;
     private DatabaseReference orderRef;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +33,7 @@ public class placedordersActivity extends AppCompatActivity {
         orderRef= FirebaseDatabase.getInstance().getReference().child("Orders");
         orderList=findViewById(R.id.cartlists);
         orderList.setLayoutManager(new LinearLayoutManager(this));
-
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -49,7 +45,6 @@ public class placedordersActivity extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Adminorders, AdminOrdersViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final Adminorders model)
-
                     {
                     holder.userName.setText("Name: "+ model.getName());
                         holder.userPhoneNumber.setText("Phone number: "+ model.getPhone());

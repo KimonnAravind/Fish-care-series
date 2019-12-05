@@ -30,9 +30,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inphone, inpass;
     private Button goin;
     private CheckBox CheckBoxRememberme;
-    private TextView admin;
+    private TextView admin,forgotpassword;
     private ProgressDialog loadingBar1;
-    private String parentdbname="Users";
+    public String forgetpassword="forgetpassword"
+;    private String parentdbname="Users";
 
     FirebaseAuth auth;
     @Override
@@ -40,12 +41,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         CheckBoxRememberme=findViewById(R.id.checkBox);
+        forgotpassword=(TextView)findViewById(R.id.ForgetPassword);
         inphone=(EditText)findViewById(R.id.editText);
         admin=(TextView)findViewById(R.id.Admin);
         inpass=(EditText)findViewById(R.id.editText2);
         goin=(Button)findViewById(R.id.button);
         Paper.init(this);
         loadingBar1=new ProgressDialog(this );
+
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, HomActivity.class);
+                intent.putExtra("forgetpassword",forgetpassword);
+                startActivity(intent);
+            }
+        });
 
         goin.setOnClickListener(new View.OnClickListener() {
             @Override

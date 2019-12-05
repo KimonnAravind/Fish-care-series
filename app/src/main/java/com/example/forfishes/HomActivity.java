@@ -1,8 +1,5 @@
 package com.example.forfishes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,8 +33,10 @@ public class HomActivity extends AppCompatActivity {
     private Button getootp,verifyotpbutt,joining;
     EditText editTextphon,editTextcode,phonenumber,password,nameinput;
     FirebaseAuth mAuth;
+    public String forgetpassword="";
     private ProgressDialog loadingBar;
-    String sentcode;
+    private Button dummy;
+    public String sentcode,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,29 @@ public class HomActivity extends AppCompatActivity {
         joining=findViewById(R.id.button4);
         nameinput=findViewById(R.id.editText6);
         password=findViewById(R.id.editText8);
+
+        dummy=(Button)findViewById(R.id.dummy);
+        Intent intent= getIntent();
+
+        Bundle bundle = intent.getExtras();
+        if(bundle!= null)
+        {
+            forgetpassword=getIntent().getExtras().get("forgetpassword").toString();
+        }
+
+        dummy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(forgetpassword.equals("forgetpassword"))
+                {
+                    phone= editTextphon.getText().toString();
+                    Intent intent = new Intent(HomActivity.this, ForgotActivity.class);
+                    intent.putExtra("phone",phone);
+                    startActivity(intent);
+                }
+            }
+        });
         joining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,14 +81,19 @@ public class HomActivity extends AppCompatActivity {
         findViewById(R.id.getotp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(HomActivity.this, forgetpassword, Toast.LENGTH_SHORT).show();
                 sendverificationcode();
                 editTextcode.setVisibility(View.VISIBLE);
                 verifyotpbutt.setVisibility(View.VISIBLE);
                 getootp.setVisibility(View.INVISIBLE);
 
 
+
+
+
             }
         });
+
         findViewById(R.id.verifyotp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,7 +189,8 @@ public class HomActivity extends AppCompatActivity {
         });
     }
 
-    private void verifysignincode() {
+    private void verifysignincode()
+    {
 
         String code=editTextcode.getText().toString();
         if(code.isEmpty())
@@ -177,16 +208,29 @@ public class HomActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            joining.setVisibility(View.VISIBLE);
-                            nameinput.setVisibility(View.VISIBLE);
-                            password.setVisibility(View.VISIBLE);
-                            verifyotpbutt.setVisibility(View.INVISIBLE);
-                            editTextcode.setVisibility(View.INVISIBLE);
-                            joining.setVisibility(View.VISIBLE);
-
-                        } else {
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                        if (task.isSuccessful())
+                        {
+                            if(forgetpassword.equals("forgetpassword"))
+                            {
+                                phone= editTextphon.getText().toString();
+                                Intent intent = new Intent(HomActivity.this, ForgotActivity.class);
+                                intent.putExtra("phone",phone);
+                                startActivity(intent);
+                            }
+                            else
+                                {
+                                joining.setVisibility(View.VISIBLE);
+                                nameinput.setVisibility(View.VISIBLE);
+                                password.setVisibility(View.VISIBLE);
+                                verifyotpbutt.setVisibility(View.INVISIBLE);
+                                editTextcode.setVisibility(View.INVISIBLE);
+                                joining.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        else
+                            {
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
+                            {
                                 Toast.makeText(HomActivity.this, "InvalidOtp", Toast.LENGTH_SHORT).show();
                             }
 

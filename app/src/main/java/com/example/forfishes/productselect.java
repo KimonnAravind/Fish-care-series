@@ -106,8 +106,6 @@ public class productselect extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
-
-
                             cartListRef.child("Admin View").child(Prevalent.currentOnlineuser.getPhone())
                                     .child("Products").child(productID).updateChildren(cartMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -116,9 +114,17 @@ public class productselect extends AppCompatActivity {
                                         {
                                             if(task.isSuccessful())
                                             {
-                                            Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(productselect.this, endusers.class);
-                            startActivity(intent);
+                                                cartListRef.child("My Orders").child(Prevalent.currentOnlineuser.getPhone())
+                                                        .child("Products").child(productID).updateChildren(cartMap)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task)
+                                                            {
+                                                                Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                                                                Intent intent = new Intent(productselect.this, endusers.class);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
 
                                             }
                                         }
@@ -126,8 +132,6 @@ public class productselect extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
 
     private void getproductdetails(final String productID) {
@@ -144,14 +148,11 @@ public class productselect extends AppCompatActivity {
                     Picasso.get().load(products.getImage()).into(productimage);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
-
     private void incranddecr() {
         temp=String.valueOf(a);
         qty.setText(temp);

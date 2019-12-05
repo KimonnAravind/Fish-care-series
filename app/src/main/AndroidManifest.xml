@@ -17,7 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminAlterActivity"></activity>
+        <activity android:name=".ForgotActivity"></activity>
+        <activity android:name=".FulldetailsActivity" />
+        <activity android:name=".MyordersActivity" />
+        <activity android:name=".AdminAlterActivity" />
         <activity android:name=".SearchproductActivity" />
         <activity android:name=".paymentActivity" />
         <activity android:name=".UserplacedActivity" />

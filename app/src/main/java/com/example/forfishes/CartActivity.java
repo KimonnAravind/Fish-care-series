@@ -28,11 +28,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button nextprocessbtn;
+    private String imageq;
     private int totalvalue=0;
     private TextView totalamount, txtmsg1;
     @Override
@@ -47,6 +49,9 @@ public class CartActivity extends AppCompatActivity {
         totalamount=(TextView) findViewById(R.id.totalpriceamount);
 
         txtmsg1=(TextView)findViewById(R.id.messageafterorder);
+
+
+
         nextprocessbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,14 +80,32 @@ public class CartActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<cart, CartViewHolder>adapter
                 =new FirebaseRecyclerAdapter<cart, CartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final cart model) {
+            protected void onBindViewHolder(@NonNull final CartViewHolder holder, int position, @NonNull final cart model) {
                 holder.txtproductquantity.setText("Quantity ="+model.getQuantity());
+                holder.txtproductid.setText("" +model.getPid());
+                imageq=holder.txtproductid.getText().toString();
+
+                final DatabaseReference imageslist = FirebaseDatabase.getInstance().getReference().child("Products").child(imageq);
+                imageslist.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                    String p1=dataSnapshot.child("image").getValue().toString();
+                        Picasso.get().load(p1).into(holder.imageofit);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 holder.txtProductname.setText(model.getPname());
                 holder.txtproductprice.setText("Price "+model.getPrice());
 
                 int oneTypeproductTprice=((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getQuantity());
                 totalvalue = totalvalue+oneTypeproductTprice;
-                totalamount.setText(String.valueOf(totalvalue));
+                totalamount.setText("Total Price ="+String.valueOf(totalvalue));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

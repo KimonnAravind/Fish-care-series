@@ -11,14 +11,7 @@
     >
 
 
-    <ImageView
-        android:layout_width="295dp"
-        android:layout_height="235dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/capture" />
+
 
     <LinearLayout
         android:id="@+id/LinearLayoutCategory1"

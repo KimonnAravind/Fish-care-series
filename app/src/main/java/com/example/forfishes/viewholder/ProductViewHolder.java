@@ -5,11 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forfishes.Interface.ItemClickListner;
-import com.example.forfishes.R;
 
 
 
@@ -27,6 +25,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
         imageView = (ImageView) itemView.findViewById(R.id.product_image);
         txtProductName = (TextView) itemView.findViewById(R.id.product_name);
+
         txtProductDescription = (TextView) itemView.findViewById(R.id.product_description);
         txtProductPrice = (TextView) itemView.findViewById(R.id.product_price);
     }

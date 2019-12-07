@@ -133,5 +133,7 @@
     <string name="delete_prodcuct">Delete prodcuct</string>
     <string name="update_now">Update now</string>
     <string name="customise_product_details">Customise product Details</string>
+    <string name="piditis">piditis</string>
+    <string name="proceed">PROCEED</string>
 
 </resources>

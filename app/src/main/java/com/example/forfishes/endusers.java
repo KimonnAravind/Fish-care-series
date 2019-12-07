@@ -42,8 +42,7 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private String type="";
-
-
+    
     private DatabaseReference productRef;
 
     @Override
@@ -57,6 +56,7 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         {
             type=getIntent().getExtras().get("Admin").toString();
         }
+
 
 
 
@@ -105,7 +105,7 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
             Picasso .get().load(Prevalent.currentOnlineuser.getImage()).placeholder(R.drawable.profile).into(userProfilePicture);
         }
         recyclerView= findViewById(R.id.recycler_menu);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 

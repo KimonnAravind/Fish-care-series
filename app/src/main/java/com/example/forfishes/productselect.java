@@ -93,6 +93,7 @@ public class productselect extends AppCompatActivity {
 
         final HashMap<String , Object> cartMap =new HashMap<>();
         cartMap.put("pid", productID);
+
         cartMap.put("pname", productname.getText().toString());
         cartMap.put("price", productprice.getText().toString());
         cartMap.put("date", savecurrentDate);

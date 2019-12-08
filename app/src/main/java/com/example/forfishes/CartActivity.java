@@ -186,7 +186,7 @@ public class CartActivity extends AppCompatActivity {
                 totalamount.setText("Dear" + userName + "\n order is shipped successfully");
                 recyclerView.setVisibility(View.GONE);
                 txtmsg1.setVisibility(View.VISIBLE);
-                txtmsg1.setText("congrads_your_order_has_been_placed_shipped");
+                txtmsg1.setText("SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!");
                 nextprocessbtn.setVisibility(View.GONE);
                     Toast.makeText(CartActivity.this, "You can purchase more products, once you received your alredy placed order", Toast.LENGTH_SHORT).show();
                 }
@@ -196,7 +196,7 @@ public class CartActivity extends AppCompatActivity {
                     totalamount.setText("Dear" + userName + "\n order is Yet to be Dispatch");
                     recyclerView.setVisibility(View.GONE);
                     txtmsg1.setVisibility(View.VISIBLE);
-                    txtmsg1.setText("congrads_your_order_has_been_shipped soon");
+                    txtmsg1.setText("SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!");
                     nextprocessbtn.setVisibility(View.GONE);
                     Toast.makeText(CartActivity.this, "You can purchase more products, once you received your alredy placed order", Toast.LENGTH_SHORT).show();
                 }

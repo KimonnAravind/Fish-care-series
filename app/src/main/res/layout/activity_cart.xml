@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/login"
+    android:background="@drawable/login1"
     android:layout_height="match_parent"
     tools:context=".CartActivity">
 
@@ -11,33 +11,32 @@
     <TextView
         android:id="@+id/totalpriceamount"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_height="81dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="639dp"
-        android:background="@drawable/button"
+        android:layout_marginTop="606dp"
+
+        android:gravity="center"
         android:text=""
-        />
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/messageafterorder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:background="@drawable/input_design"
+        android:text="SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!"
         android:textAlignment="center"
-        android:id="@+id/messageafterorder"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:visibility="invisible"
-        android:textSize="20sp"
-        android:text="@string/congrads_your_order_has_been_placed_successfully" />
+        android:visibility="invisible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list"

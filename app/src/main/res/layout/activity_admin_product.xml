@@ -8,44 +8,95 @@
     tools:context=".AdminProductActivity"
     >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="245dp"
 
+        android:text="ACCESSORIES"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="437dp"
+
+        android:text="FISH FOOD"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="439dp"
+
+        android:text="FISH MEDICINE"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="246dp"
+
+        android:text="COMBO"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/LinearLayoutCategory1"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-
-
+        android:layout_width="124dp"
+        android:layout_height="254dp"
         android:layout_alignParentStart="true"
 
         android:layout_alignParentTop="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="246dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="-9dp"
         android:gravity="center"
         android:orientation="horizontal">
 
-
         <ImageView
             android:id="@+id/fish"
-            android:layout_width="97dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/download" />
+            android:layout_width="142dp"
+            android:layout_height="171dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="42dp"
+            android:src="@drawable/combo" />
+
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LinearLayoutCategory2"
-        android:layout_width="139dp"
-        android:layout_height="186dp"
+        android:layout_width="145dp"
+        android:layout_height="155dp"
 
 
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="246dp"
+        android:layout_marginStart="199dp"
+        android:layout_marginTop="78dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -58,23 +109,24 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="0dp"
-            android:src="@drawable/b3fadaef9e35b501" />
+            android:src="@drawable/accessories" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/LinearLayoutCategory3"
-        android:layout_width="135dp"
-        android:layout_height="165dp"
+        android:layout_width="wrap_content"
+        android:layout_height="139dp"
 
 
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
 
-        android:layout_marginStart="265dp"
-        android:layout_marginTop="253dp"
-        android:layout_marginEnd="-4dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginEnd="214dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -88,6 +140,36 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="0dp"
             android:src="@drawable/food" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutCategory4"
+        android:layout_width="119dp"
+        android:layout_height="143dp"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_centerVertical="true"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="282dp"
+        android:layout_marginEnd="59dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/medicine"
+            android:layout_width="97dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/fishmedicing" />
 
     </LinearLayout>
 
@@ -134,4 +216,6 @@
         android:text="@string/Logout"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+
 </RelativeLayout>

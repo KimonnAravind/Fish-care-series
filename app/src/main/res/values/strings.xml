@@ -144,5 +144,6 @@
     <string name="delivery_address">DELIVERY ADDRESS</string>
     <string name="fulladdress">Enter Complete Address</string>
     <string name="state">State</string>
+    <string name="you_cannot_add_your_next_order_until_your_order_has_shipped_don_t_worry_within_24_48_hours_your_order_will_be_dispatch">You cannot add your next order until your order has shipped. Don\'t worry within 24-48 hours your order will be dispatch.!</string>
 
 </resources>

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminProductActivity extends AppCompatActivity {
-    private ImageView fish,accessories,food;
+    private ImageView fish,accessories,food,Medicine;
     private Button placedorderbtn;
     private Button alterdata,LogoutBTN;
 
@@ -23,6 +23,7 @@ public class AdminProductActivity extends AppCompatActivity {
         fish=(ImageView) findViewById(R.id.fish);
         accessories=(ImageView) findViewById(R.id.aquariumaccessories);
         food=(ImageView)findViewById(R.id.food);
+        Medicine=(ImageView)findViewById(R.id.medicine);
         alterdata=(Button)findViewById(R.id.alterdata);
         LogoutBTN=(Button)findViewById(R.id.LogoutBTN);
 
@@ -51,17 +52,26 @@ public class AdminProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(AdminProductActivity.this, AdminActivity.class);
-                intent.putExtra("category", "fish");
+                intent.putExtra("category", "Combos");
                 startActivity(intent);
 
             }
         });
 
+        Medicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminProductActivity.this, AdminActivity.class);
+                intent.putExtra("category", "Fish_Medicine");
+                startActivity(intent);
+            }
+            });
+
         accessories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(AdminProductActivity.this, AdminActivity.class);
-                intent.putExtra("category", "accessoories");
+                intent.putExtra("category", "Aquarium_Accessories");
                 startActivity(intent);
 
             }
@@ -71,7 +81,7 @@ public class AdminProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(AdminProductActivity.this, AdminActivity.class);
-                intent.putExtra("category", "food");
+                intent.putExtra("category", "Fish_Food");
                 startActivity(intent);
 
             }

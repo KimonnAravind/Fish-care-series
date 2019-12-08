@@ -24,6 +24,7 @@
         android:id="@+id/productName1"
         android:layout_width="255dp"
         android:layout_height="46dp"
+        android:textAlignment="center"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
@@ -37,6 +38,7 @@
     <EditText
         android:id="@+id/productDescription1"
         android:layout_width="255dp"
+        android:textAlignment="center"
 
         android:layout_height="46dp"
         android:layout_alignParentBottom="true"
@@ -50,12 +52,9 @@
 
     <EditText
         android:id="@+id/productPrice1"
-
         android:layout_width="255dp"
-
         android:layout_height="46dp"
-
-
+        android:textAlignment="center"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="185dp"
@@ -67,6 +66,8 @@
         android:id="@+id/AddProduct1"
         android:layout_width="191dp"
         android:layout_height="36dp"
+        android:textAlignment="center"
+
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"

@@ -2,6 +2,12 @@
     <string name="app_name">ForFishes</string>
     <string name="todo">TODO</string>
     <string name="todo1">TODO1</string>
+    <string-array name="states">
+        <item>Select State</item>
+        <item>TAMILNADU</item>
+        <item>KERALA</item>
+        <item>KARNATAKA</item>
+    </string-array>
     <string name="todo2">TODO2</string>
     <string name="new_user">NEW USER</string>
     <string name="already_an_user">ALREADY AN USER</string>
@@ -135,5 +141,8 @@
     <string name="customise_product_details">Customise product Details</string>
     <string name="piditis">piditis</string>
     <string name="proceed">PROCEED</string>
+    <string name="delivery_address">DELIVERY ADDRESS</string>
+    <string name="fulladdress">Enter Complete Address</string>
+    <string name="state">State</string>
 
 </resources>

@@ -22,7 +22,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
-public class AdminAlterActivity extends AppCompatActivity {
+public class AdminAlterActivity extends AppCompatActivity
+{
 
     private Button applychanges,deleteproduct;
     private EditText name,price,description;

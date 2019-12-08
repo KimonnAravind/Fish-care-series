@@ -14,17 +14,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.forfishes.Fish.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class confirmorderActivity extends AppCompatActivity {
+public class confirmorderActivity extends AppCompatActivity
+{
     private EditText name,phone,address,pincode;
     private Button placeorderbtn;
+    private EditText disstate;
     private String totalamount="";
+    private DatabaseReference userreference;
+   private DatabaseReference productReferances;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +39,13 @@ public class confirmorderActivity extends AppCompatActivity {
         totalamount=getIntent().getStringExtra("Total Price");
         placeorderbtn = (Button)findViewById(R.id.placeorder);
         name=(EditText)findViewById(R.id.shimentnametext);
+        userreference= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
+        disstate=(EditText)findViewById(R.id.displaystate);
         phone=(EditText)findViewById(R.id.shippingphonenumber);
         address=(EditText)findViewById(R.id.shippingaddress);
+       productReferances= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
         pincode=(EditText)findViewById(R.id.shippingpincode);
-
+        displayproductinfo();
         placeorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +53,34 @@ public class confirmorderActivity extends AppCompatActivity {
             }
         });
     }
-private void checkmethod()
+
+    private void displayproductinfo()
+    {
+        productReferances.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    name.setText(dataSnapshot.child("name").getValue().toString());
+                    phone.setText(dataSnapshot.child("phone").getValue().toString());
+                    address.setText(dataSnapshot.child("address").getValue().toString());
+                    pincode.setText(dataSnapshot.child("pincode").getValue().toString());
+                    disstate.setText(dataSnapshot.child("State").getValue().toString());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    private void checkmethod()
 {
     if(TextUtils.isEmpty(name.getText().toString()))
     {
@@ -82,13 +119,14 @@ private void confirmation()
     final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("Orders")
             .child(Prevalent.currentOnlineuser.getPhone());
     HashMap<String ,Object> ordersMap=new HashMap<>();
-
     ordersMap.put("totalamount", totalamount);
     ordersMap.put("name", name.getText().toString());
     ordersMap.put("phone", phone.getText().toString());
-    ordersMap.put("Address",address.getText().toString());
-    ordersMap.put("Pincode", pincode.getText().toString());
+    ordersMap.put("address",address.getText().toString());
+    ordersMap.put("pincode", pincode.getText().toString());
+    ordersMap.put("State",disstate.getText().toString());
     ordersMap.put("date", savecurrentDate);
+    ordersMap.put("State",disstate.getText().toString());
     ordersMap.put("time", savecurrentTime);
     ordersMap.put("state", "not shipped");
     ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -96,7 +134,6 @@ private void confirmation()
         public void onComplete(@NonNull Task<Void> task) {
             if(task.isSuccessful())
             {
-
 
                 FirebaseDatabase.getInstance().getReference()
                         .child("Cart List")
@@ -126,16 +163,34 @@ private void confirmation()
     ordersMaps.put("totalamount", totalamount);
     ordersMaps.put("name", name.getText().toString());
     ordersMaps.put("phone", phone.getText().toString());
-    ordersMaps.put("Address",address.getText().toString());
-    ordersMaps.put("Pincode", pincode.getText().toString());
+    ordersMaps.put("address",address.getText().toString());
+    ordersMaps.put("pincode", pincode.getText().toString());
+    ordersMap.put("State",disstate.getText().toString());
     ordersMaps.put("date", savecurrentDate);
     ordersMaps.put("time", savecurrentTime);
+    ordersMaps.put("State",disstate.getText().toString());
     ordersMaps.put("state", "not shipped");
     ordersRefs.updateChildren(ordersMaps).addOnCompleteListener(new OnCompleteListener<Void>() {
         @Override
         public void onComplete(@NonNull Task<Void> task) {
             if(task.isSuccessful())
             {
+                HashMap<String ,Object> ordersMapp=new HashMap<>();
+                ordersMapp.put("name", name.getText().toString());
+                ordersMapp.put("phone", phone.getText().toString());
+                ordersMapp.put("address",address.getText().toString());
+                ordersMapp.put("pincode", pincode.getText().toString());
+                ordersMapp.put("State",disstate.getText().toString());
+                userreference.updateChildren(ordersMapp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                   if(task.isSuccessful())
+                   {
+                       Toast.makeText(confirmorderActivity.this, "Finished", Toast.LENGTH_SHORT).show();
+                   }
+                    }
+                });
+
                 Toast.makeText(confirmorderActivity.this, "Done", Toast.LENGTH_SHORT).show();
             }
         }

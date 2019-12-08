@@ -129,4 +129,33 @@
         android:padding="15dp"
         android:textAlignment="center" />
 
+    <EditText
+        android:id="@+id/pinn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingPhonenumber"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="153dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="15dp"
+        android:hint="@string/pin_code"
+        android:inputType="number"
+        android:padding="15dp"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/spinnerxm"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/input_design"
+        android:tag="@string/phone_number"
+        android:textAlignment="center" />
+
 </RelativeLayout>

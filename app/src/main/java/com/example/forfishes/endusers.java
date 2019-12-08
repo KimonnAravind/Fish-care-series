@@ -31,6 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -115,11 +116,18 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
 
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
+
+        Query sortposterinDecendingOrder= productRef.orderByChild("countpost");
+
         FirebaseRecyclerOptions<Products> options=
-                new FirebaseRecyclerOptions.Builder<Products>().setQuery(productRef, Products.class)
+                new FirebaseRecyclerOptions.Builder<Products>().setQuery(sortposterinDecendingOrder, Products.class)
                         .build();
+
+
+
         FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>adapter=new FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull com.example.forfishes.ProductViewHolder holder, int position, @NonNull final Products model) {
@@ -130,14 +138,13 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-
+                    public void onClick(View v)
+                    {
                         if(type.equals("Admin"))
                         {
                             Intent intent= new Intent(endusers.this,AdminAlterActivity.class);
                             intent.putExtra("pid", model.getPid());
                             startActivity(intent);
-
                         }
                         else
                         {

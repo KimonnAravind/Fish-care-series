@@ -19,8 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,6 +41,7 @@ public class AdminActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private TextView productName, productDescription, productPrice;
     private Uri ImageUri;
+    private long countpost=0;
     private static final int GalleryPick = 1;
     private StorageReference productImagesRef;
     private DatabaseReference productref;
@@ -142,6 +146,7 @@ public class AdminActivity extends AppCompatActivity {
         productMap.put("category",CategoryName);
         productMap.put("price",price);
         productMap.put("pname",name);
+        productMap.put("countpost",countpost);
         productref.child(productrandomkey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -170,6 +175,29 @@ public class AdminActivity extends AppCompatActivity {
     }
     private void StoreProductInformation()
     {
+        productref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+             if(dataSnapshot.exists())
+             {
+                countpost=dataSnapshot.getChildrenCount();
+                countpost=-(countpost);
+             }
+             else
+             {
+                countpost=0;
+             }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         loadingBar.setTitle("Adding new product");
         loadingBar.setMessage("Please wait while uploading the image to the DB");
         loadingBar.setCanceledOnTouchOutside(false);

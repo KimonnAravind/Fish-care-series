@@ -20,15 +20,16 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class UserplacedActivity extends AppCompatActivity {
     private DatabaseReference orderRef1;
     private RecyclerView cartList;
     private String userID= "";
+    private String imageqs;
     private Button shipped;
-
     RecyclerView.LayoutManager layoutManager;
-    private DatabaseReference cartlistRef;
+    private DatabaseReference cartlistRef,placedordersref, newrefu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +42,10 @@ public class UserplacedActivity extends AppCompatActivity {
         cartList.setHasFixedSize(true);
         layoutManager= new LinearLayoutManager(this);
         cartList.setLayoutManager(layoutManager);
-
         cartlistRef= FirebaseDatabase.getInstance().getReference()
                 .child("Cart List").child("Admin View").child(userID).child("Products");
 
+            newrefu=FirebaseDatabase.getInstance().getReference().child("Products");
 
         }
 
@@ -58,11 +59,16 @@ public class UserplacedActivity extends AppCompatActivity {
                 .build();
         FirebaseRecyclerAdapter<cart, CartViewHolder> adapter= new FirebaseRecyclerAdapter<cart, CartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder holder, final int position, @NonNull cart model)
+            protected void onBindViewHolder(@NonNull final CartViewHolder holder, final int position, @NonNull cart model)
             {
+                holder.txtproductid.setText(""+ model.getImagelink());
+                String newss= holder.txtproductid.getText().toString();
                 holder.txtproductquantity.setText("Quantity ="+model.getQuantity());
                 holder.txtProductname.setText(model.getPname());
                 holder.txtproductprice.setText("Price "+model.getPrice());
+                Picasso.get().load(newss).into(holder.imageofit);
+
+
 
 
                 shipped.setOnClickListener(new View.OnClickListener() {

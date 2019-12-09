@@ -81,17 +81,18 @@ public class CartActivity extends AppCompatActivity {
                 =new FirebaseRecyclerAdapter<cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull final CartViewHolder holder, int position, @NonNull final cart model) {
-                holder.txtproductquantity.setText("Quantity ="+model.getQuantity());
+                holder.txtproductquantity.setText("Qty: "+model.getQuantity());
                 holder.txtproductid.setText("" +model.getPid());
                 imageq=holder.txtproductid.getText().toString();
 
                 final DatabaseReference imageslist = FirebaseDatabase.getInstance().getReference().child("Products").child(imageq);
-                imageslist.addValueEventListener(new ValueEventListener() {
-                    @Override
+                imageslist.addValueEventListener(new ValueEventListener()
+                {@Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
                     String p1=dataSnapshot.child("image").getValue().toString();
                         Picasso.get().load(p1).into(holder.imageofit);
+                        Toast.makeText(CartActivity.this, p1, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -101,7 +102,7 @@ public class CartActivity extends AppCompatActivity {
                 });
 
                 holder.txtProductname.setText(model.getPname());
-                holder.txtproductprice.setText("Price "+model.getPrice());
+                holder.txtproductprice.setText("Price per unit: "+model.getPrice());
 
                 int oneTypeproductTprice=((Integer.valueOf(model.getPrice())))* Integer.valueOf(model.getQuantity());
                 totalvalue = totalvalue+oneTypeproductTprice;

@@ -1,7 +1,7 @@
 package com.example.forfishes.Model;
 
 public class cart {
-    private String pid, pname, price,quantity,discount;
+    private String pid, pname, price,quantity,discount,imagelink;
 
     public cart() {
 
@@ -14,6 +14,7 @@ public class cart {
         this.price = price;
         this.quantity = quantity;
         this.discount = discount;
+        this.imagelink= imagelink;
     }
 
     public String getPid() {
@@ -54,5 +55,14 @@ public class cart {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public String getImagelink()
+    {
+        return imagelink;
+    }
+    public void setImagelink(String imagelink)
+    {
+        this.imagelink=imagelink;
     }
 }

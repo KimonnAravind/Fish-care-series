@@ -33,6 +33,7 @@ public class productselect extends AppCompatActivity {
     private ImageView productimage;
     private  TextView productname, productdescription,productprice;
     int a=0;
+    private String str="";
     private String productID="";
     private String temp;
     @Override
@@ -100,6 +101,7 @@ public class productselect extends AppCompatActivity {
         cartMap.put("time", savecurrentTime);
         cartMap.put("quantity",qty.getText());
         cartMap.put("discount", "");
+        cartMap.put("imagelink",str);
         cartListRef.child("User View").child(Prevalent.currentOnlineuser.getPhone())
                 .child("Products").child(productID).updateChildren(cartMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -147,6 +149,8 @@ public class productselect extends AppCompatActivity {
                     productdescription.setText(products.getDescription());
                     productprice.setText(products.getPrice());
                     Picasso.get().load(products.getImage()).into(productimage);
+                    String p1=dataSnapshot.child("image").getValue().toString();
+                    str=p1;
                 }
             }
             @Override

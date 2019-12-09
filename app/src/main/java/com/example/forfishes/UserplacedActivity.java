@@ -63,10 +63,11 @@ public class UserplacedActivity extends AppCompatActivity {
             {
                 holder.txtproductid.setText(""+ model.getImagelink());
                 String newss= holder.txtproductid.getText().toString();
+                Picasso.get().load(newss).into(holder.imageofit);
                 holder.txtproductquantity.setText("Quantity ="+model.getQuantity());
                 holder.txtProductname.setText(model.getPname());
                 holder.txtproductprice.setText("Price "+model.getPrice());
-                Picasso.get().load(newss).into(holder.imageofit);
+
 
 
 

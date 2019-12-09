@@ -20,6 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class FulldetailsActivity extends AppCompatActivity {
 
@@ -61,6 +62,11 @@ public class FulldetailsActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, final int position, @NonNull cart model)
             {
+
+                holder.txtproductid.setText(""+ model.getImagelink());
+                String newss= holder.txtproductid.getText().toString();
+                Toast.makeText(FulldetailsActivity.this, newss, Toast.LENGTH_SHORT).show();
+                Picasso.get().load(newss).into(holder.imageofit);
                 holder.txtproductquantity.setText("Quantity ="+model.getQuantity());
                 holder.txtProductname.setText(model.getPname());
                 holder.txtproductprice.setText("Price "+model.getPrice());

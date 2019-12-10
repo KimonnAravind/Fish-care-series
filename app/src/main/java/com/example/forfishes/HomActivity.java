@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,13 +32,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-public class HomActivity extends AppCompatActivity {
+public class HomActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
+{
     private Button getootp,verifyotpbutt,joining;
     EditText editTextphon,editTextcode,phonenumber,password,nameinput;
     FirebaseAuth mAuth;
     public String forgetpassword="";
     private ProgressDialog loadingBar;
-    private Button dummy;
+    private Spinner spin;
+   private String   text;
+
     public String sentcode,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,29 +55,22 @@ public class HomActivity extends AppCompatActivity {
         joining=findViewById(R.id.button4);
         nameinput=findViewById(R.id.editText6);
         password=findViewById(R.id.editText8);
+        spin=(Spinner)findViewById(R.id.spinnerxm);
+        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this,R.array.states,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(adapter);
+        spin.setOnItemSelectedListener(this);
 
-        dummy=(Button)findViewById(R.id.dummy);
+
+
         Intent intent= getIntent();
-
         Bundle bundle = intent.getExtras();
         if(bundle!= null)
         {
             forgetpassword=getIntent().getExtras().get("forgetpassword").toString();
         }
 
-        dummy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                if(forgetpassword.equals("forgetpassword"))
-                {
-                    phone= editTextphon.getText().toString();
-                    Intent intent = new Intent(HomActivity.this, ForgotActivity.class);
-                    intent.putExtra("phone",phone);
-                    startActivity(intent);
-                }
-            }
-        });
+
         joining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +152,13 @@ public class HomActivity extends AppCompatActivity {
                     HashMap<String,Object> userdatamap = new HashMap<>();
                     userdatamap.put("name", inname);
                     userdatamap.put("phone", inphone);
+                    userdatamap.put("State",text);
                     userdatamap.put("password", inpass);
+                    userdatamap.put("address", "");
+                    userdatamap.put("image", "");
+                    userdatamap.put("pincode","");
+                    userdatamap.put("phoneOrder", "");
+
                     RootRef.child("Users").child(inphone).updateChildren(userdatamap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -222,6 +227,7 @@ public class HomActivity extends AppCompatActivity {
                                 joining.setVisibility(View.VISIBLE);
                                 nameinput.setVisibility(View.VISIBLE);
                                 password.setVisibility(View.VISIBLE);
+                                spin.setVisibility(View.VISIBLE);
                                 verifyotpbutt.setVisibility(View.INVISIBLE);
                                 editTextcode.setVisibility(View.INVISIBLE);
                                 joining.setVisibility(View.VISIBLE);
@@ -281,4 +287,15 @@ public class HomActivity extends AppCompatActivity {
 
 
     };
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    {
+       text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

@@ -32,7 +32,7 @@ public class productselect extends AppCompatActivity {
     private Button addtocart;
     private ImageView productimage;
     private  TextView productname, productdescription,productprice;
-    int a=0;
+    int a=1;
     private String str="";
     private String productID="";
     private String temp;
@@ -58,6 +58,7 @@ public class productselect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 a=a+1;
+
                 incranddecr();
             }
         });
@@ -66,7 +67,12 @@ public class productselect extends AppCompatActivity {
             public void onClick(View v) {
 
                 a=a-1;
-                incranddecr();
+                if(a<=0)
+                {
+                    Toast.makeText(productselect.this, "Invalid ", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                incranddecr();}
             }
         });
         addtocart.setOnClickListener(new View.OnClickListener() {

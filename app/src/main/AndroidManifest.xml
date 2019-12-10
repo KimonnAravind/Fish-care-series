@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgotActivity"></activity>
+        <activity android:name=".PlacedsuccessfullyActivity"></activity>
+        <activity android:name=".ForgotActivity" />
         <activity android:name=".FulldetailsActivity" />
         <activity android:name=".MyordersActivity" />
         <activity android:name=".AdminAlterActivity" />

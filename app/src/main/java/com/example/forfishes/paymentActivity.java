@@ -13,26 +13,64 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.forfishes.Fish.Prevalent.Prevalent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class paymentActivity extends AppCompatActivity
 {
 
     EditText name,id,amount;
     TextView trnID;
     Button paywithgl;
+    private String names,phones,addresses,states,picodes;
+    private String savecurrentdate,savecurrenttime,productrandomkey;
     int GOOGLE_PAY_REQUEST_CODE = 123;
     String GOOGLE_PAY_PACKAGE_NAME= "com.google.android.apps.nbu.paisa.user";
     String TAG= "main";
+    String eee="";
     final int UPI_PAYMENT=0;
+    private DatabaseReference productRef,ProductRef2;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        Calendar date = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        savecurrentdate=currentDate.format(date.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat(" HH:mm:ss a");
+        savecurrenttime=currentTime.format(date.getTime());
+
+        productrandomkey=savecurrentdate + savecurrenttime;
+
+        productRef= FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View").child(Prevalent.currentOnlineuser.getPhone()).child("Products");
+        ProductRef2=FirebaseDatabase.getInstance().getReference().child("Mine").child(Prevalent.currentOnlineuser.getPhone());
+
+       names= getIntent().getStringExtra("names");
+       phones=getIntent().getStringExtra("phones");
+       addresses=getIntent().getStringExtra("addresses");
+       states=getIntent().getStringExtra("states");
+       picodes=getIntent().getStringExtra("pincodes");
+
+        Toast.makeText(this, names, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, phones, Toast.LENGTH_SHORT).show();
 
         trnID=(TextView)findViewById(R.id.transactionID);
         paywithgl=(Button)findViewById(R.id.paywithgl);
         name=(EditText) findViewById(R.id.payeename);
         id=(EditText)findViewById(R.id.payeeID);
         amount=(EditText)findViewById(R.id.payment);
+
+
 
         paywithgl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +95,31 @@ public class paymentActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    private void moveGameRoom(final DatabaseReference fromPath, final DatabaseReference toPath) {
+        fromPath.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                toPath.setValue(dataSnapshot.getValue(), new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError firebaseError, DatabaseReference firebase) {
+                        if (firebaseError != null) {
+                            System.out.println("Copy failed");
+                        } else {
+                            System.out.println("Success");
+
+                        }
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     void payusingUPI(String name, String id, String amount)
@@ -99,7 +162,22 @@ public class paymentActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultcode, data);
         String trnsID = data.getStringExtra("response");
         Log.e("UPI", "onActivityResultttt:" + trnsID);
+        eee=trnsID;
+        if(eee.contains("SUCCESS"))
+        {
 
+            moveGameRoom(productRef,ProductRef2);
+            Toast.makeText(this, "IRUKU", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(paymentActivity.this,PlacedsuccessfullyActivity.class);
+            startActivity(intent);
+
+        }
+        else
+        {
+            Toast.makeText(this, "ILA", Toast.LENGTH_SHORT).show();
+        }
+        //Toast.makeText(this, eee, Toast.LENGTH_SHORT).show();
         trnID.setText(trnsID);
 
         /*Log.e("main", "requestCode is" +requestCode+ "UPI_PAYMENT IS "+UPI_PAYMENT +" resultcode is "+RESULT_OK+ "data is" +data);

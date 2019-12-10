@@ -36,7 +36,7 @@ public class ForgotActivity extends AppCompatActivity
         if(bundle!= null)
         {
 
-            phone = getIntent().getExtras().get("phone").toString();
+            phone = getIntent().getExtras().get("SUCCESS").toString();
         }
         productRefers= FirebaseDatabase.getInstance().getReference().child("Users").child(phone);
 

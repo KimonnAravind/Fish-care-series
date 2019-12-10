@@ -138,9 +138,8 @@ public class FulldetailsActivity extends AppCompatActivity {
 
         cartList.setAdapter(adapter);
         adapter.startListening();
+
     }
-
-
 
 
 }

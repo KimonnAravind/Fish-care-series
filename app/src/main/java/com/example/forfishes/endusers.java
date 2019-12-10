@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private String type="";
+    private TextView ssbc;
+    private ImageView combos,second,third,fourt;
     
     private DatabaseReference productRef;
 
@@ -58,9 +61,11 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
             type=getIntent().getExtras().get("Admin").toString();
         }
 
-
-
-
+        ssbc=(TextView)findViewById(R.id.sbc);
+        combos= (ImageView)findViewById(R.id.combos);
+        second=(ImageView)findViewById(R.id.sec);
+        third=(ImageView)findViewById(R.id.thr);
+        fourt=(ImageView)findViewById(R.id.frr);
         productRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -110,9 +115,49 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        combos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SearchproductActivity.class);
+                intent.putExtra("search", "Combos");
+                startActivity(intent);
+            }
+        });
+        second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SearchproductActivity.class);
+                intent.putExtra("search", "Aquarium_Accessories");
+                startActivity(intent);
+            }
+        });
+        third.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SearchproductActivity.class);
+                intent.putExtra("search", "Fish_Food");
+                startActivity(intent);
+            }
+        });
+        fourt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SearchproductActivity.class);
+                intent.putExtra("search", "Fish_Medicine");
+                startActivity(intent);
+            }
+        });
+        ssbc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SearchproductActivity.class);
+                intent.putExtra("search", "Fish_Medicine");
+                startActivity(intent);
+            }
+        });
+
 
     }
-
 
 
     @Override

@@ -32,10 +32,12 @@ import com.squareup.picasso.Picasso;
 
 public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private TextView emptycart;
     private RecyclerView.LayoutManager layoutManager;
     private Button nextprocessbtn;
     private String imageq;
     private int totalvalue=0;
+    private DatabaseReference cartlistRefu;
     private TextView totalamount, txtmsg1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +45,29 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         recyclerView=findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
+        emptycart=(TextView)findViewById(R.id.cartisempty);
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         nextprocessbtn=(Button)findViewById(R.id.nextbutton);
         totalamount=(TextView) findViewById(R.id.totalpriceamount);
-
         txtmsg1=(TextView)findViewById(R.id.messageafterorder);
+        cartlistRefu= FirebaseDatabase.getInstance().getReference().child("Cart List").child("User View");
+        cartlistRefu.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+           if(!dataSnapshot.exists())
+           {
+               Toast.makeText(CartActivity.this, "Empty Cart", Toast.LENGTH_SHORT).show();
+                emptycart.setVisibility(View.VISIBLE);
+                nextprocessbtn.setVisibility(View.INVISIBLE);
+           }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
 
         nextprocessbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +109,7 @@ public class CartActivity extends AppCompatActivity {
                     {
                     String p1=dataSnapshot.child("image").getValue().toString();
                         Picasso.get().load(p1).into(holder.imageofit);
-                        Toast.makeText(CartActivity.this, p1, Toast.LENGTH_SHORT).show();
+                      //=----  Toast.makeText(CartActivity.this, p1, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

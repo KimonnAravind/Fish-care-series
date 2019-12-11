@@ -1,6 +1,5 @@
 package com.example.forfishes;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -94,7 +93,7 @@ public class productselect extends AppCompatActivity {
 
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
-        savecurrentTime= currentdate.format(calfordate.getTime());
+        savecurrentTime= currentTime.format(calfordate.getTime());
 
         final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
 
@@ -123,17 +122,7 @@ public class productselect extends AppCompatActivity {
                                         {
                                             if(task.isSuccessful())
                                             {
-                                                cartListRef.child("My Orders").child(Prevalent.currentOnlineuser.getPhone())
-                                                        .child("Products").child(productID).updateChildren(cartMap)
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task)
-                                                            {
-                                                                Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
-                                                                Intent intent = new Intent(productselect.this, endusers.class);
-                                                                startActivity(intent);
-                                                            }
-                                                        });
+                                                Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
 
                                             }
                                         }

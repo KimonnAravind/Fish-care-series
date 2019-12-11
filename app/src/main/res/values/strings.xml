@@ -149,5 +149,12 @@
     <string name="order_status">Order Status</string>
     <string name="sssvs">Settings</string>
     <string name="cscs">Cart</string>
+    <string name="your_cart_is_empty">Your cart is empty.!</string>
+    <string name="you_do_not_have_an_order_history">You do not have an Order History</string>
+    <string name="currently_none_of_your_orders_are_under_process">Currently none of your orders are under process.!</string>
+    <string name="click_here_to_check_the_order_status">Click here to check the order status</string>
+    <string name="your_order_has_been_packed_soon_it_will_be_dispatch_to_your_location">Your order has been packed, And soon it will be dispatch to your location.!</string>
+    <string name="your_order_is_placed_successfully_we_are_working_on_it_to_dispatch">Your order is placed successfully, We are working on it to dispatch.!</string>
+    <string name="your_order_has_been_sent_to_you_through_courier_soon_it_will_reach_you">Your order has been sent to you through courier, soon it will reach you.!</string>
 
 </resources>

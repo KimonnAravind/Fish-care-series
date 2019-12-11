@@ -7,13 +7,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.forfishes.Fish.Prevalent.Prevalent;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +24,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class paymentActivity extends AppCompatActivity
 {
 
-    EditText name,id,amount;
+    TextView name,id,amount;
     TextView trnID;
     Button paywithgl;
-    private String names,phones,addresses,states,picodes;
+    private String names,phones,addresses,states,picodes,totalamount;
     private String savecurrentdate,savecurrenttime,productrandomkey;
     int GOOGLE_PAY_REQUEST_CODE = 123;
     String GOOGLE_PAY_PACKAGE_NAME= "com.google.android.apps.nbu.paisa.user";
@@ -60,16 +63,19 @@ public class paymentActivity extends AppCompatActivity
        addresses=getIntent().getStringExtra("addresses");
        states=getIntent().getStringExtra("states");
        picodes=getIntent().getStringExtra("pincodes");
+       totalamount=getIntent().getStringExtra("totalamount");
 
         Toast.makeText(this, names, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, phones, Toast.LENGTH_SHORT).show();
 
         trnID=(TextView)findViewById(R.id.transactionID);
         paywithgl=(Button)findViewById(R.id.paywithgl);
-        name=(EditText) findViewById(R.id.payeename);
-        id=(EditText)findViewById(R.id.payeeID);
-        amount=(EditText)findViewById(R.id.payment);
-
+        name=(TextView) findViewById(R.id.payeename);
+        id=(TextView)findViewById(R.id.payeeID);
+        amount=(TextView) findViewById(R.id.payment);
+        amount.setText(totalamount);
+        id.setText("pl.7904168617@icici");
+        name.setText("ADMIN");
 
 
         paywithgl.setOnClickListener(new View.OnClickListener() {
@@ -168,6 +174,7 @@ public class paymentActivity extends AppCompatActivity
 
             moveGameRoom(productRef,ProductRef2);
             Toast.makeText(this, "IRUKU", Toast.LENGTH_SHORT).show();
+            confirmation();
 
             Intent intent = new Intent(paymentActivity.this,PlacedsuccessfullyActivity.class);
             startActivity(intent);
@@ -218,8 +225,58 @@ public class paymentActivity extends AppCompatActivity
 
     }
 
+    private void confirmation()
+    {
+        final String savecurrentDate, savecurrentTime;
+        Calendar calfordate=Calendar.getInstance();
+        SimpleDateFormat currentdate = new SimpleDateFormat("MMM dd, yyyy");
+        savecurrentDate= currentdate.format(calfordate.getTime());
 
 
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
+        savecurrentTime= currentdate.format(calfordate.getTime());
+        final String rands= savecurrentDate+savecurrentTime;
+
+        final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("Orders")
+                .child(Prevalent.currentOnlineuser.getPhone());
+        HashMap<String ,Object> ordersMap=new HashMap<>();
+
+        ordersMap.put("totalamount", totalamount);
+        ordersMap.put("name", names);
+        ordersMap.put("phone", phones);
+        ordersMap.put("address",addresses);
+        ordersMap.put("pincode", picodes);
+        ordersMap.put("State",states);
+        ordersMap.put("date", savecurrentDate);
+        ordersMap.put("time", savecurrentTime);
+        ordersMap.put("state", "not shipped");
+
+        ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
+            {
+             if(task.isSuccessful())
+             {
+                 FirebaseDatabase.getInstance().getReference()
+                         .child("Cart List")
+                         .child("User View")
+                         .child(Prevalent.currentOnlineuser.getPhone())
+                         .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                     public void onComplete(@NonNull Task<Void> task)
+                     {
+                      if(task.isSuccessful())
+                      {
+                          Toast.makeText(paymentActivity.this, "Order confirmed", Toast.LENGTH_SHORT).show();
+                      }
+                     }
+                 });
+
+             }
+            }
+        });
+
+    }
 
 
 }

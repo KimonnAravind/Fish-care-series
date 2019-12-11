@@ -38,7 +38,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class endusers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class endusers<onBackPressed> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private RecyclerView recyclerView;
@@ -155,9 +155,9 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(intent);
             }
         });
-
-
     }
+
+
 
 
     @Override
@@ -288,7 +288,7 @@ public class endusers extends AppCompatActivity implements NavigationView.OnNavi
         {
             if(!type.equals("Admin"))
             {
-            Intent intent =new Intent(endusers.this, MyordersActivity.class);
+            Intent intent =new Intent(endusers.this, OrderStatusActivity.class);
             startActivity(intent);
             }
 

@@ -13,17 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.forfishes.Fish.Prevalent.Prevalent;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
 
 public class confirmorderActivity<onActivityResult> extends AppCompatActivity
 {
@@ -117,6 +111,7 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity
         Intent intent= new Intent(confirmorderActivity.this , paymentActivity.class);
         intent.putExtra("names",name.getText().toString());
         intent.putExtra("phones",phone.getText().toString());
+        intent.putExtra("totalamount",totalamount);
         intent.putExtra("addresses",address.getText().toString());
         intent.putExtra("states",disstate.getText().toString());
         intent.putExtra("pincodes",pincode.getText().toString());
@@ -127,6 +122,7 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity
     }
 }
 
+/*
 void confirmation()
 {
    final String savecurrentDate, savecurrentTime;
@@ -217,6 +213,7 @@ void confirmation()
     });
 
 }
+*/
 
 
 

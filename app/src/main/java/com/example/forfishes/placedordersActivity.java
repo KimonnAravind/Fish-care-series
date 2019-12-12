@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,13 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.forfishes.Model.Adminorders;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class placedordersActivity extends AppCompatActivity {
 
     private RecyclerView orderList;
-    private DatabaseReference orderRef;
+    private DatabaseReference orderRef,adminviewreere;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class placedordersActivity extends AppCompatActivity {
         orderRef= FirebaseDatabase.getInstance().getReference().child("Orders");
         orderList=findViewById(R.id.cartlists);
         orderList.setLayoutManager(new LinearLayoutManager(this));
+
     }
     @Override
     protected void onStart() {
@@ -53,6 +58,8 @@ public class placedordersActivity extends AppCompatActivity {
                         holder.usertime.setText("Time: "+ model.getTime());
                         holder.userShippingaddress.setText("Address: "+ model.getAddress());
                         holder.userpincode.setText("Pincode: "+ model.getPincode());
+                        adminviewreere=FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View")
+                                .child(model.getPhone());
 
 
                         holder.showordersbtn.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +91,27 @@ public class placedordersActivity extends AppCompatActivity {
                                     {
                                         if(i==0)
                                         {
-                                            String uiid= getRef(position).getKey();
-                                            Removeorder(uiid);
+                                            adminviewreere.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                                    if(dataSnapshot.exists())
+                                                    {
+                                                        Toast.makeText(placedordersActivity.this, "Update shipping details, before closing the order.!", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                    else
+                                                    {
+                                                        String uiid= getRef(position).getKey();
+                                                        Removeorder(uiid);
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
                                         }
 
                                         else

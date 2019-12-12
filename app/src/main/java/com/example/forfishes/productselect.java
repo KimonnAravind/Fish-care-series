@@ -1,5 +1,6 @@
 package com.example.forfishes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -123,6 +124,8 @@ public class productselect extends AppCompatActivity {
                                             if(task.isSuccessful())
                                             {
                                                 Toast.makeText(productselect.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(productselect.this, endusers.class);
+                                                startActivity(intent);
 
                                             }
                                         }

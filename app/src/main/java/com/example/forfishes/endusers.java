@@ -308,10 +308,12 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
             if(!type.equals("Admin"))
             {
                 Toast.makeText(this, "Here", Toast.LENGTH_SHORT).show();
-                Paper.book().destroy();
                 Intent intent = new Intent(endusers.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+
+                Paper.book().destroy();
+
 
             }
 

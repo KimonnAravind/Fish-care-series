@@ -85,11 +85,6 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                 editTextcode.setVisibility(View.VISIBLE);
                 verifyotpbutt.setVisibility(View.VISIBLE);
                 getootp.setVisibility(View.INVISIBLE);
-
-
-
-
-
             }
         });
 
@@ -155,7 +150,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                     userdatamap.put("State",text);
                     userdatamap.put("password", inpass);
                     userdatamap.put("address", "");
-                    userdatamap.put("image", "");
+                    userdatamap.put("image", "https://firebasestorage.googleapis.com/v0/b/forfishes-c0fab.appspot.com/o/ProductImages%2Fimage%3A73908Dec%2010%2C%202019%2009%3A10%3A41%20AM.jpg?alt=media&token=4d670ef2-2062-46f7-91fb-d2aeaa823ef4");
                     userdatamap.put("pincode","");
                     userdatamap.put("phoneOrder", "");
 

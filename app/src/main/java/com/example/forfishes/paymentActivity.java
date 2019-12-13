@@ -38,6 +38,7 @@ public class paymentActivity extends AppCompatActivity
     String GOOGLE_PAY_PACKAGE_NAME= "com.google.android.apps.nbu.paisa.user";
     String TAG= "main";
     String eee="";
+    TextView yes;
     final int UPI_PAYMENT=0;
     private DatabaseReference productRef,ProductRef2;
     @Override
@@ -72,8 +73,10 @@ public class paymentActivity extends AppCompatActivity
         paywithgl=(Button)findViewById(R.id.paywithgl);
         name=(TextView) findViewById(R.id.payeename);
         id=(TextView)findViewById(R.id.payeeID);
+        yes=(TextView)findViewById(R.id.paymentso);
         amount=(TextView) findViewById(R.id.payment);
         amount.setText(totalamount);
+        yes.setText(totalamount+" RS");
         id.setText("pl.7904168617@icici");
         name.setText("ADMIN");
 

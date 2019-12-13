@@ -17,7 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FullldetailsActivity"></activity>
         <activity android:name=".OrderStatusActivity" />
         <activity android:name=".PlacedsuccessfullyActivity" />
         <activity android:name=".ForgotActivity" />
@@ -25,7 +24,9 @@
         <activity android:name=".MyordersActivity" />
         <activity android:name=".AdminAlterActivity" />
         <activity android:name=".SearchproductActivity" />
-        <activity android:name=".paymentActivity" />
+        <activity android:name=".paymentActivity"
+            android:label="Payment"
+            />
         <activity android:name=".UserplacedActivity" />
         <activity android:name=".placedordersActivity" />
         <activity android:name=".confirmorderActivity" />

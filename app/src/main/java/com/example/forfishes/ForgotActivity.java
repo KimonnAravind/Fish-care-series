@@ -66,6 +66,8 @@ public class ForgotActivity extends AppCompatActivity
                 if(task.isSuccessful())
                 {
                     Toast.makeText(ForgotActivity.this, "Password Updated Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ForgotActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 }
 
             }

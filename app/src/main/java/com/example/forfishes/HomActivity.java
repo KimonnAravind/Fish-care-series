@@ -69,6 +69,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
         {
             forgetpassword=getIntent().getExtras().get("forgetpassword").toString();
         }
+        Toast.makeText(HomActivity.this, forgetpassword, Toast.LENGTH_SHORT).show();
 
 
         joining.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +81,6 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
         findViewById(R.id.getotp).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomActivity.this, forgetpassword, Toast.LENGTH_SHORT).show();
                 sendverificationcode();
                 editTextcode.setVisibility(View.VISIBLE);
                 verifyotpbutt.setVisibility(View.VISIBLE);
@@ -212,9 +212,11 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                         {
                             if(forgetpassword.equals("forgetpassword"))
                             {
+                                Toast.makeText(HomActivity.this, "Compatison success", Toast.LENGTH_SHORT).show();
+
                                 phone= editTextphon.getText().toString();
                                 Intent intent = new Intent(HomActivity.this, ForgotActivity.class);
-                                intent.putExtra("phone",phone);
+                                intent.putExtra("SUCCESS",phone);
                                 startActivity(intent);
                             }
                             else
@@ -286,7 +288,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
        text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

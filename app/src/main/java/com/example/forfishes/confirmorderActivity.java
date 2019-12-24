@@ -19,36 +19,33 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class confirmorderActivity<onActivityResult> extends AppCompatActivity
-{
-    private EditText name,phone,address,pincode;
+public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
+    private EditText name, phone, address, pincode;
     private Button placeorderbtn;
     private EditText disstate;
-    private int a=0;
-    private String totalamount="";
+    private int a = 0;
+    private String totalamount = "";
     private TextView totalpriceamountS;
     private DatabaseReference userreference;
-   private DatabaseReference productReferances;
+    private DatabaseReference productReferances;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmorder);
-        totalamount=getIntent().getStringExtra("Total Price");
-        placeorderbtn = (Button)findViewById(R.id.placeorder);
-        name=(EditText)findViewById(R.id.shimentnametext);
+        totalamount = getIntent().getStringExtra("Total Price");
+        placeorderbtn = (Button) findViewById(R.id.placeorder);
+        name = (EditText) findViewById(R.id.shimentnametext);
 
 
-
-
-        totalpriceamountS=(TextView)findViewById(R.id.totalpriceamounts);
-        userreference= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
-        disstate=(EditText)findViewById(R.id.displaystate);
-        phone=(EditText)findViewById(R.id.shippingphonenumber);
-        address=(EditText)findViewById(R.id.shippingaddress);
-       productReferances= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
-        pincode=(EditText)findViewById(R.id.shippingpincode);
+        totalpriceamountS = (TextView) findViewById(R.id.totalpriceamounts);
+        userreference = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
+        disstate = (EditText) findViewById(R.id.displaystate);
+        phone = (EditText) findViewById(R.id.shippingphonenumber);
+        address = (EditText) findViewById(R.id.shippingaddress);
+        productReferances = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
+        pincode = (EditText) findViewById(R.id.shippingpincode);
 
         displayproductinfo();
         placeorderbtn.setOnClickListener(new View.OnClickListener() {
@@ -60,15 +57,12 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity
     }
 
 
-    private void displayproductinfo()
-    {
+    private void displayproductinfo() {
         totalpriceamountS.setText(totalamount);
         productReferances.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                if(dataSnapshot.exists())
-                {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
 
                     name.setText(dataSnapshot.child("name").getValue().toString());
                     phone.setText(dataSnapshot.child("phone").getValue().toString());
@@ -87,41 +81,42 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity
     }
 
 
-    private void checkmethod()
-{
-    if(TextUtils.isEmpty(name.getText().toString()))
-    {
-        Toast.makeText(this, "Please enter your name for delivery", Toast.LENGTH_SHORT).show();
-    }
-   else if(TextUtils.isEmpty(phone.getText().toString()))
-    {
-        Toast.makeText(this, "Please enter your phone number for delivery", Toast.LENGTH_SHORT).show();
-    }
-    else if(TextUtils.isEmpty(address.getText().toString()))
-    {
-        Toast.makeText(this, "Please enter your address for delivery", Toast.LENGTH_SHORT).show();
-    }
-    else if(TextUtils.isEmpty(pincode.getText().toString()))
-    {
-        Toast.makeText(this, "Please enter your pincode for delivery", Toast.LENGTH_SHORT).show();
-    }
-    else
-    {
-        Toast.makeText(confirmorderActivity.this, "Your order has been placed successfully", Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent(confirmorderActivity.this , paymentActivity.class);
-        intent.putExtra("names",name.getText().toString());
-        intent.putExtra("phones",phone.getText().toString());
-        intent.putExtra("totalamount",totalamount);
-        intent.putExtra("addresses",address.getText().toString());
-        intent.putExtra("states",disstate.getText().toString());
-        intent.putExtra("pincodes",pincode.getText().toString());
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
-        startActivity(intent);
-     // confirmation();
+    private void checkmethod() {
 
+        String phnn = phone.getText().toString();
+        int a = phnn.length();
+
+        if (phnn.startsWith("+91")&&a==13)
+        {
+
+            if (TextUtils.isEmpty(name.getText().toString())) {
+                Toast.makeText(this, "Please enter your name for delivery", Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(phone.getText().toString())) {
+                Toast.makeText(this, "Please enter your phone number for delivery", Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(address.getText().toString())) {
+                Toast.makeText(this, "Please enter your address for delivery", Toast.LENGTH_SHORT).show();
+            } else if (TextUtils.isEmpty(pincode.getText().toString())) {
+                Toast.makeText(this, "Please enter your pincode for delivery", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(confirmorderActivity.this, "Your order has been placed successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(confirmorderActivity.this, paymentActivity.class);
+                intent.putExtra("names", name.getText().toString());
+                intent.putExtra("phones", phone.getText().toString());
+                intent.putExtra("totalamount", totalamount);
+                intent.putExtra("addresses", address.getText().toString());
+                intent.putExtra("states", disstate.getText().toString());
+                intent.putExtra("pincodes", pincode.getText().toString());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                // confirmation();
+
+            }
     }
+        else
+        {
+            Toast.makeText(this, "Phone number format is invalid enter phone number in +91********** this format", Toast.LENGTH_SHORT).show();
+        }
 }
-
 /*
 void confirmation()
 {

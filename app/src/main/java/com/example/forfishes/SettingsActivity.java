@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,12 +41,14 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 {
 
     private CircleImageView profileimageview;
-    private EditText fullname,userphone, useraddress,pinc;
+    private EditText fullname, useraddress,pinc;
+    private TextView userphone;
     private TextView profileChangetxtBtn,closeTextBtn,saveTextbtn;
     private StorageTask uploadTask;
     private Uri imageUri;
     private String myUrl="";
     private String text;
+    private Button applychns1;
     private StorageReference storageProfilePictureRef;
     private String checker = "";
     private Spinner spin;
@@ -60,9 +63,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         profileimageview= (CircleImageView)findViewById(R.id.setting_profileimage);
         fullname=(EditText)findViewById(R.id.settingfullname);
         pinc=(EditText)findViewById(R.id.pinn);
-        userphone=(EditText)findViewById(R.id.settingPhonenumber);
+        userphone=(TextView) findViewById(R.id.settingPhonenumber);
         useraddress=(EditText)findViewById(R.id.settingaddress);
         spin=(Spinner)findViewById(R.id.spinnerxm);
+        applychns1=(Button)findViewById(R.id.applychns);
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this,R.array.states,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
@@ -91,6 +95,19 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             }
         }
     });
+        applychns1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checker.equals("clicked"))
+                {
+                    userInfosaved();
+                }
+                else
+                {
+                    updateOnlyuserInfo();
+                }
+            }
+        });
         profileChangetxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +117,19 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                         .setAspectRatio(1,1)
                         .start(SettingsActivity.this);
 
+
+            }
+        });
+
+        profileimageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                checker= "clicked";
+
+                CropImage.activity(imageUri)
+                        .setAspectRatio(1,1)
+                        .start(SettingsActivity.this);
 
             }
         });
@@ -137,6 +167,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             imageUri= result.getUri();
 
             profileimageview.setImageURI(imageUri);
+
         }
         else
         {
@@ -176,7 +207,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
      progressDialog.setMessage("Please wait, While we are updating your Account information");
      progressDialog.setCanceledOnTouchOutside(false);
      progressDialog.show();
-     if(imageUri != null)
+     if(imageUri !=null )
      {
          final StorageReference fileRef= storageProfilePictureRef
                  .child(Prevalent.currentOnlineuser.getPhone() + ".jpg");
@@ -192,8 +223,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                  return fileRef.getDownloadUrl();
 
              }
-         })
-         .addOnCompleteListener(new OnCompleteListener<Uri>() {
+         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
              @Override
              public void onComplete(@NonNull Task<Uri> task)
              {
@@ -217,6 +247,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                      ref.child(Prevalent.currentOnlineuser.getPhone()).updateChildren(userMap);
                      progressDialog.dismiss();
                     startActivity(new Intent(SettingsActivity.this,endusers.class));
+
                      Toast.makeText(SettingsActivity.this, "Profile info updated successfully", Toast.LENGTH_SHORT).show();
                      finish();
 
@@ -238,7 +269,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    private void userinfodisplay(final CircleImageView profileimageview, final EditText fullname, final EditText userphone, final EditText useraddress)
+    private void userinfodisplay(final CircleImageView profileimageview, final EditText fullname, final TextView userphone, final EditText useraddress)
     {
         DatabaseReference UsersRef= FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
 

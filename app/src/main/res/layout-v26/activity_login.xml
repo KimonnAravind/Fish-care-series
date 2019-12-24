@@ -18,6 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="38dp"
         android:layout_marginBottom="195dp"
+        android:text="+91"
         android:background="@drawable/input_design"
         android:hint="@string/phone_number"
         android:inputType="phone"

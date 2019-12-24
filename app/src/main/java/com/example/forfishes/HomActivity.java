@@ -47,7 +47,8 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hom);
-        editTextphon=findViewById(R.id.phonin);
+        editTextphon= findViewById(R.id.phonin);
+
         editTextcode=findViewById(R.id.otpn);
         verifyotpbutt=findViewById(R.id.verifyotp);
         getootp=findViewById(R.id.getotp);
@@ -82,9 +83,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
             @Override
             public void onClick(View v) {
                 sendverificationcode();
-                editTextcode.setVisibility(View.VISIBLE);
-                verifyotpbutt.setVisibility(View.VISIBLE);
-                getootp.setVisibility(View.INVISIBLE);
+
             }
         });
 
@@ -244,22 +243,32 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
 
     private void sendverificationcode() {
         String phoneNumber = editTextphon.getText().toString();
-        if(phoneNumber.isEmpty())
-        {
-            editTextphon.setError("Number required");
-            return;
-        }
-        if(phoneNumber.length()<10)
-        {
-            editTextphon.setError("Number required");
-        }
+        int a=phoneNumber.length();
+       if(phoneNumber.startsWith("+91")&&a==13) {
 
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                this,               // Activity (for callback binding)
-                mCallbacks);        // OnVerificationStateChangedCallbacks
+           if (phoneNumber.isEmpty()) {
+               editTextphon.setError("Number required");
+               return;
+           }
+           if (phoneNumber.length() < 10) {
+               editTextphon.setError("Number required");
+           }
+
+           PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                   phoneNumber,        // Phone number to verify
+                   60,                 // Timeout duration
+                   TimeUnit.SECONDS,   // Unit of timeout
+                   this,               // Activity (for callback binding)
+                   mCallbacks);        // OnVerificationStateChangedCallbacks
+
+           editTextcode.setVisibility(View.VISIBLE);
+           verifyotpbutt.setVisibility(View.VISIBLE);
+           getootp.setVisibility(View.INVISIBLE);
+       }
+       else
+       {
+           Toast.makeText(this, "Invalid phone number enter your 10 digit phone number with the code +91**********", Toast.LENGTH_SHORT).show();
+       }
     }
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override

@@ -30,30 +30,31 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inphone, inpass;
     private Button goin;
     private CheckBox CheckBoxRememberme;
-    private TextView admin,forgotpassword;
+    private TextView admin, forgotpassword;
     private ProgressDialog loadingBar1;
-    public String forgetpassword="forgetpassword"
-;    private String parentdbname="Users";
+    public String forgetpassword = "forgetpassword";
+    private String parentdbname = "Users";
 
     FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        CheckBoxRememberme=findViewById(R.id.checkBox);
-        forgotpassword=(TextView)findViewById(R.id.ForgetPassword);
-        inphone=(EditText)findViewById(R.id.editText);
-        admin=(TextView)findViewById(R.id.Admin);
-        inpass=(EditText)findViewById(R.id.editText2);
-        goin=(Button)findViewById(R.id.button);
+        CheckBoxRememberme = findViewById(R.id.checkBox);
+        forgotpassword = (TextView) findViewById(R.id.ForgetPassword);
+        inphone = (EditText) findViewById(R.id.editText);
+        admin = (TextView) findViewById(R.id.Admin);
+        inpass = (EditText) findViewById(R.id.editText2);
+        goin = (Button) findViewById(R.id.button);
         Paper.init(this);
-        loadingBar1=new ProgressDialog(this );
+        loadingBar1 = new ProgressDialog(this);
 
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, HomActivity.class);
-                intent.putExtra("forgetpassword",forgetpassword);
+                intent.putExtra("forgetpassword", forgetpassword);
                 startActivity(intent);
             }
         });
@@ -66,9 +67,8 @@ public class LoginActivity extends AppCompatActivity {
         });
         admin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-              parentdbname="Admins";
+            public void onClick(View v) {
+                parentdbname = "Admins";
 
 
             }
@@ -77,31 +77,37 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void loginuser() {
-
-        String innphone=inphone.getText().toString();
-        String password=inpass.getText().toString();
-
-      if(TextUtils.isEmpty(innphone))
+    private void loginuser()
+    {
+        String innphone = inphone.getText().toString();
+        String password = inpass.getText().toString();
+        int a=innphone.length();
+        if (innphone.startsWith("+91")&&a==13)
         {
+
+
+
+
+        if (TextUtils.isEmpty(innphone)) {
             Toast.makeText(this, "Please write your phone number", Toast.LENGTH_SHORT).show();
-        }
-
-        else if(TextUtils.isEmpty(password))
-        {
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please write your password", Toast.LENGTH_SHORT).show();
+        } else {
+            loadingBar1.setTitle("Login Account");
+            loadingBar1.setMessage("Please wait while checking your details");
+            loadingBar1.setCanceledOnTouchOutside(false);
+            loadingBar1.show();
+
+            AllowAccessToAcc(innphone, password);
+
         }
-        else
-      {
-          loadingBar1.setTitle("Login Account");
-          loadingBar1.setMessage("Please wait while checking your details");
-          loadingBar1.setCanceledOnTouchOutside(false);
-          loadingBar1.show();
-
-          AllowAccessToAcc(innphone, password);
-
-      }
     }
+        else
+        {
+            Toast.makeText(this, "Enter your registered phone number with the code +91**********", Toast.LENGTH_SHORT).show();
+        }
+
+}
 
     private void AllowAccessToAcc(final String innphone, final String password) {
         if(CheckBoxRememberme.isChecked())

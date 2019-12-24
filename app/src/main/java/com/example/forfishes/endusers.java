@@ -105,6 +105,21 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
         TextView userNamTextView= headerView.findViewById(R.id.user_profile_name);
         CircleImageView userProfilePicture= headerView.findViewById(R.id.user_profile_image);
 
+        userNamTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+        userProfilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(endusers.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if(!type.equals("Admin"))
         {
             userNamTextView.setText(Prevalent.currentOnlineuser.getName());

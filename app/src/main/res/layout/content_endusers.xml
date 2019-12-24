@@ -3,58 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/login"
 
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_endusers">
 
-    <TextView
-        android:layout_width="83dp"
-        android:layout_height="76dp"
-        android:layout_gravity="end"
-        android:text="@string/search_by_category"
-        android:textSize="20sp"
-        android:id="@+id/sbc"
-        android:textAlignment="center"
-        android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/combos"
-        android:layout_width="77dp"
-        android:layout_height="74dp"
+    <RelativeLayout
+        android:layout_width="59dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="#EAF0F1"
 
-        android:layout_gravity="end"
-        android:layout_marginTop="85sp"
-        android:background="@drawable/combo" />
+        >
+
+        <TextView
+            android:id="@+id/sbc"
+            android:layout_width="83dp"
+            android:layout_height="76dp"
+            android:layout_gravity="end"
+            android:text="@string/search_by_category"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/combos"
+            android:layout_width="77dp"
+            android:layout_height="74dp"
+
+            android:layout_gravity="end"
+            android:layout_marginTop="85sp"
+            android:background="@drawable/combo" />
 
 
-    <ImageView
-        android:id="@+id/sec"
-        android:layout_width="71dp"
-        android:layout_height="74dp"
-        android:layout_gravity="end"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="156dp"
-        android:background="@drawable/accessories" />
+        <ImageView
+            android:id="@+id/sec"
+            android:layout_width="71dp"
+            android:layout_height="74dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="156dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/accessories" />
 
-    <ImageView
-        android:id="@+id/thr"
-        android:layout_width="77dp"
-        android:layout_height="63dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="235dp"
-        android:background="@drawable/food" />
+        <ImageView
+            android:id="@+id/thr"
+            android:layout_width="77dp"
+            android:layout_height="63dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="235dp"
+            android:background="@drawable/food" />
 
-    <ImageView
-        android:id="@+id/frr"
-        android:layout_width="64dp"
-        android:layout_height="59dp"
-        android:layout_gravity="end"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="305dp"
-        android:background="@drawable/fishmedicing" />
+        <ImageView
+            android:id="@+id/frr"
+            android:layout_width="64dp"
+            android:layout_height="59dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="305dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/fishmedicing" />
 
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_menu"

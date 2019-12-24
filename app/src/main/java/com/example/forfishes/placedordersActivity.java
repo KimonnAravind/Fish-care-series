@@ -58,8 +58,9 @@ public class placedordersActivity extends AppCompatActivity {
                         holder.usertime.setText("Time: "+ model.getTime());
                         holder.userShippingaddress.setText("Address: "+ model.getAddress());
                         holder.userpincode.setText("Pincode: "+ model.getPincode());
-                        adminviewreere=FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View")
-                                .child(model.getPhone());
+                        final String phonu=model.getPhone();
+
+
 
 
                         holder.showordersbtn.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +90,8 @@ public class placedordersActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int i)
                                     {
+                                        adminviewreere=FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View")
+                                                .child(phonu);
                                         if(i==0)
                                         {
                                             adminviewreere.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -104,6 +107,9 @@ public class placedordersActivity extends AppCompatActivity {
                                                     {
                                                         String uiid= getRef(position).getKey();
                                                         Removeorder(uiid);
+                                                        Intent intent = new Intent(placedordersActivity.this, AdminActivity.class);
+                                                        startActivity(intent);
+                                                        Toast.makeText(placedordersActivity.this, "Order closed", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
 

@@ -49,6 +49,8 @@
         android:layout_marginBottom="245dp"
         android:background="@drawable/input_design"
         android:hint="@string/vds"
+        android:text="+91"
+
         android:importantForAutofill="no"
         android:inputType="phone" />
 

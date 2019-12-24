@@ -59,6 +59,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:text="@string/remember_me"
+            android:visibility="invisible"
             android:textSize="16sp"
             android:textStyle="bold" />
 

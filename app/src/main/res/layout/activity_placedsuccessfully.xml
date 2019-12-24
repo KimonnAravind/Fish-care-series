@@ -5,29 +5,65 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/lays"
-    android:background="@drawable/delivered"
+    android:background="@drawable/wallpaper"
     tools:context=".PlacedsuccessfullyActivity">
 
+    <ImageView
+        android:layout_width="257dp"
+        android:layout_height="238dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="223dp"
+        android:background="@drawable/thumsup" />
+
     <TextView
+        android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="500sp"
+        android:layout_marginEnd="-1dp"
         android:text="@string/your_order_has_been_placed_succesfully_soon_we_will_deliver_you_product_at_your_door_step"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/textview"
-        android:layout_marginTop="600sp"
         android:textAlignment="center"
-        />
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="145dp"
+        android:layout_height="107dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="601dp"
+        android:background="@drawable/trackser" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="248dp"
+        android:layout_height="77dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginStart="-51dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/button"
+       />
+
+    <Button
+        android:id="@+id/ioi"
+        android:layout_width="227dp"
+        android:layout_height="83dp"
         android:layout_below="@+id/textview"
         android:layout_alignParentBottom="true"
-        android:background="color/white"
-        android:id="@+id/ioi"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:text="click here to go home.!" />
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="25dp"
+        android:background="@android:color/white"
+        android:text="@string/click_here_to_go_home" />
 </RelativeLayout>

@@ -206,6 +206,21 @@
         android:textStyle="italic" />
 
     <Button
+        android:id="@+id/schargesandupi"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="61dp"
+
+        android:background="@drawable/button"
+        android:text="Shipping charges and UPI id"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <Button
         android:id="@+id/LogoutBTN"
         android:layout_width="120dp"
         android:layout_height="37dp"

@@ -166,5 +166,7 @@
     <string name="medicine">Medicine</string>
     <string name="upload_pic">Upload pic</string>
     <string name="show_this_order_products">Show this order products</string>
+    <string name="tamilnadu">Tamilnadu:</string>
+    <string name="tn">Tamilnadu:</string>
 
 </resources>

@@ -11,14 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AdminProductActivity extends AppCompatActivity {
     private ImageView fish,accessories,food,Medicine;
     private Button placedorderbtn;
-    private Button alterdata,LogoutBTN;
+    private Button alterdata,LogoutBTN,schargesandupi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_product);
 
-
+        schargesandupi=(Button)findViewById(R.id.schargesandupi);
         placedorderbtn=(Button)findViewById(R.id.placedorder1);
         fish=(ImageView) findViewById(R.id.fish);
         accessories=(ImageView) findViewById(R.id.aquariumaccessories);
@@ -27,6 +27,13 @@ public class AdminProductActivity extends AppCompatActivity {
         alterdata=(Button)findViewById(R.id.alterdata);
         LogoutBTN=(Button)findViewById(R.id.LogoutBTN);
 
+        schargesandupi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent intent = new Intent(AdminProductActivity.this,chargesandupi.class);
+            startActivity(intent);
+            }
+        });
         alterdata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

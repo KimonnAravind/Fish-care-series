@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallpapers"
+    tools:context=".chargesandupi">
+
+    <EditText
+        android:id="@+id/upiid"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="481dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/input_design"
+        android:inputType="text"
+        android:text="10"
+
+        android:textSize="35sp" />
+
+    <EditText
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/input_design"
+        android:inputType="number"
+        android:id="@+id/tn"
+        android:text="10"
+        android:textSize="35sp" />
+
+    <EditText
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="371dp"
+        android:id="@+id/ka"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/input_design"
+        android:inputType="number"
+        android:text="10"
+        android:textSize="35sp" />
+
+    <EditText
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="428dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/input_design"
+        android:inputType="number"
+        android:id="@+id/kr"
+        android:text="10"
+        android:textSize="35sp" />
+
+    <TextView
+        android:layout_width="175dp"
+        android:layout_height="71dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="307dp"
+        android:text="@string/tn"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+
+    <TextView
+        android:layout_width="164dp"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="420dp"
+        android:text="Kerala"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <TextView
+        android:layout_width="164dp"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="479dp"
+        android:text="UPI id"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <TextView
+        android:layout_width="175dp"
+        android:layout_height="71dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="362dp"
+        android:text="Karnataka"
+        android:textAlignment="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <Button
+        android:layout_width="164dp"
+        android:id="@+id/applying"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="137dp"
+        android:background="@drawable/button"
+        android:text="Apply changes" />
+</RelativeLayout>

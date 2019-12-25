@@ -10,12 +10,9 @@
 
 
     <RelativeLayout
-        android:layout_width="59dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
-        android:background="#EAF0F1"
-
-        >
+        android:layout_width="70dp"
+        android:layout_height="725dp"
+        android:layout_gravity="right">
 
         <TextView
             android:id="@+id/sbc"
@@ -24,7 +21,7 @@
             android:layout_gravity="end"
             android:text="@string/search_by_category"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -37,32 +34,69 @@
             android:background="@drawable/combo" />
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/combos"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="-15dp"
+            android:text="@string/combo"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+
         <ImageView
             android:id="@+id/sec"
             android:layout_width="71dp"
             android:layout_height="74dp"
             android:layout_gravity="end"
-            android:layout_marginTop="156dp"
+            android:layout_marginTop="185dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/accessories" />
+            android:background="@drawable/acc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/accessories"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/sec"
+            />
 
         <ImageView
             android:id="@+id/thr"
-            android:layout_width="77dp"
-            android:layout_height="63dp"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="end"
-            android:layout_marginTop="235dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginEnd="0dp"
             android:background="@drawable/food" />
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/food"
+    android:textStyle="bold"
+    android:layout_below="@+id/thr"
+    android:layout_marginLeft="18dp"
+    />
         <ImageView
             android:id="@+id/frr"
             android:layout_width="64dp"
             android:layout_height="59dp"
             android:layout_gravity="end"
-            android:layout_marginTop="305dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/fishmedicing" />
+            android:layout_marginTop="385dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/fishm" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/medicine"
+            android:layout_below="@id/frr"
+            />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

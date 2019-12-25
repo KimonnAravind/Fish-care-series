@@ -77,7 +77,7 @@ public class paymentActivity extends AppCompatActivity
         amount=(TextView) findViewById(R.id.payment);
         amount.setText(totalamount);
         yes.setText(totalamount+" RS");
-        id.setText("pl.7904168617@icici");
+        id.setText("aravindselvam03-1@okaxis");
         name.setText("ADMIN");
 
 

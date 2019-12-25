@@ -40,8 +40,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
     public String forgetpassword="";
     private ProgressDialog loadingBar;
     private Spinner spin;
-   private String   text;
-
+    private String   text;
     public String sentcode,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +60,6 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
         spin.setOnItemSelectedListener(this);
-
-
-
         Intent intent= getIntent();
         Bundle bundle = intent.getExtras();
         if(bundle!= null)
@@ -212,7 +208,6 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                             if(forgetpassword.equals("forgetpassword"))
                             {
                                 Toast.makeText(HomActivity.this, "Compatison success", Toast.LENGTH_SHORT).show();
-
                                 phone= editTextphon.getText().toString();
                                 Intent intent = new Intent(HomActivity.this, ForgotActivity.class);
                                 intent.putExtra("SUCCESS",phone);
@@ -231,7 +226,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                         }
                         else
                             {
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
+                                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
                             {
                                 Toast.makeText(HomActivity.this, "InvalidOtp", Toast.LENGTH_SHORT).show();
                             }

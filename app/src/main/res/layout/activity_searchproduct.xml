@@ -10,7 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
-        ></androidx.appcompat.widget.Toolbar>
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SEARCH"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,54 +60,97 @@
             android:layout_marginTop="109dp"
             android:layout_marginEnd="-5dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seconds"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/combo"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/secondss"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="3dp"
+                android:text="@string/accessories"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/secondss"
+                android:layout_marginStart="235dp"
+                android:layout_marginTop="3dp"
+                android:text="@string/food"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/secondss"
+                android:layout_marginStart="315dp"
+                android:layout_marginTop="3dp"
+                android:text="@string/medicine"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/seconds"
-                android:layout_width="wrap_content"
-                android:layout_height="68dp"
+                android:layout_width="77dp"
+                android:layout_height="70dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
                 android:layout_marginEnd="306dp"
                 android:background="@drawable/combo" />
 
             <Button
                 android:id="@+id/secondss"
-                android:layout_width="98dp"
-                android:layout_height="76dp"
+                android:layout_width="69dp"
+                android:layout_height="56dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="203dp"
-                android:background="@drawable/accessories" />
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="214dp"
+                android:background="@drawable/acc" />
 
             <Button
                 android:id="@+id/secondsss"
-                android:layout_width="98dp"
-                android:layout_height="69dp"
+                android:layout_width="82dp"
+                android:layout_height="64dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="99dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="105dp"
                 android:background="@drawable/food" />
 
             <Button
                 android:id="@+id/secondssss"
-                android:layout_width="76dp"
-                android:layout_height="69dp"
+                android:layout_width="63dp"
+                android:layout_height="54dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="46dp"
-                android:background="@drawable/fishmedicing" />
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="22dp"
+                android:background="@drawable/fishm" />
 
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchList"
-            android:layout_width="318dp"
-            android:layout_height="596dp"
+            android:layout_width="315dp"
+            android:layout_height="586dp"
             android:layout_below="@+id/searchproduct"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="37dp"
-            android:layout_marginTop="83dp"
+            android:layout_marginTop="93dp"
             android:layout_marginBottom="0dp">
 
         </androidx.recyclerview.widget.RecyclerView>

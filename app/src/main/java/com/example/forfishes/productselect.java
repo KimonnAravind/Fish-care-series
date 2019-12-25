@@ -33,6 +33,7 @@ public class productselect extends AppCompatActivity {
     private ImageView productimage;
     private  TextView productname, productdescription,productprice;
     int a=1;
+    private String now;
     private String str="";
     private String productID="";
     private String temp;
@@ -40,8 +41,6 @@ public class productselect extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productselect);
-
-
         addtocart=(Button)findViewById(R.id.addproducttocart);
         productID=getIntent().getStringExtra("pid");
         productimage=(ImageView)findViewById(R.id.productImagedetails);
@@ -102,7 +101,7 @@ public class productselect extends AppCompatActivity {
         cartMap.put("pid", productID);
 
         cartMap.put("pname", productname.getText().toString());
-        cartMap.put("price", productprice.getText().toString());
+        cartMap.put("price", now);
         cartMap.put("date", savecurrentDate);
         cartMap.put("time", savecurrentTime);
         cartMap.put("quantity",qty.getText());
@@ -145,7 +144,8 @@ public class productselect extends AppCompatActivity {
                     Products products= dataSnapshot.getValue(Products.class);
                     productname.setText(products.getPname());
                     productdescription.setText(products.getDescription());
-                    productprice.setText(products.getPrice());
+                    productprice.setText(products.getPrice()+" RS");
+                    now=(products.getPrice());
                     Picasso.get().load(products.getImage()).into(productimage);
                     String p1=dataSnapshot.child("image").getValue().toString();
                     str=p1;

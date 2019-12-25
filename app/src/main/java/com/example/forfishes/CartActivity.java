@@ -30,7 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity
+{
     private RecyclerView recyclerView;
     private TextView emptycart;
     private RecyclerView.LayoutManager layoutManager;
@@ -156,10 +157,23 @@ public class CartActivity extends AppCompatActivity {
                                                 {
                                                  if(task.isSuccessful())
                                                  {
-                                                     Toast.makeText(CartActivity.this, "Item removed from the cart successfully", Toast.LENGTH_SHORT).show();
-                                                     Intent intent = new Intent(CartActivity.this, endusers.class);
 
-                                                     startActivity(intent);
+                                                  cartlistRef.child("Admin View").child(Prevalent.currentOnlineuser.getPhone())
+                                                          .child("Products")
+                                                          .child(model.getPid())
+                                                          .removeValue()
+                                                          .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                              @Override
+                                                              public void onComplete(@NonNull Task<Void> task) {
+                                                             if(task.isSuccessful())
+                                                             {
+                                                                 Toast.makeText(CartActivity.this, "Item removed from the cart successfully", Toast.LENGTH_SHORT).show();
+                                                                 Intent intent = new Intent(CartActivity.this, endusers.class);
+
+                                                                 startActivity(intent);
+                                                             }
+                                                              }
+                                                          });
 
                                                  }
                                                 }
@@ -220,11 +234,18 @@ public class CartActivity extends AppCompatActivity {
                 }
             }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(CartActivity.this, endusers.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

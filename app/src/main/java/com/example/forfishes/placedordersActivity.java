@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.forfishes.Model.Adminorders;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -105,11 +107,27 @@ public class placedordersActivity extends AppCompatActivity {
                                                     }
                                                     else
                                                     {
-                                                        String uiid= getRef(position).getKey();
+
+                                                        FirebaseDatabase.getInstance().getReference()
+                                                                .child("Orders")
+                                                                .child(phonu)
+                                                                .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task)
+                                                            {
+                                                                if(task.isSuccessful())
+                                                                {
+                                                                    Toast.makeText(placedordersActivity.this, "Order closed", Toast.LENGTH_SHORT).show();
+                                                                    finish();
+                                                                    startActivity(getIntent());
+                                                                    /*Intent intent = new Intent(placedordersActivity.this, AdminActivity.class);
+                                                                    startActivity(intent);*/
+                                                                }
+                                                            }
+                                                        });
+                                                       /* String uiid= getRef(position).getKey();
                                                         Removeorder(uiid);
-                                                        Intent intent = new Intent(placedordersActivity.this, AdminActivity.class);
-                                                        startActivity(intent);
-                                                        Toast.makeText(placedordersActivity.this, "Order closed", Toast.LENGTH_SHORT).show();
+                                                        */
                                                     }
                                                 }
 

@@ -193,7 +193,7 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
             protected void onBindViewHolder(@NonNull com.example.forfishes.ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
-                holder.txtProductPrice.setText(model.getPrice());
+                holder.txtProductPrice.setText("Price: "+model.getPrice()+" RS");
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

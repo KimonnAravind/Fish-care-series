@@ -31,6 +31,7 @@ public class paymentActivity extends AppCompatActivity
 
     TextView name,id,amount;
     TextView trnID;
+    String idi;
     Button paywithgl;
     private String names,phones,addresses,states,picodes,totalamount;
     private String savecurrentdate,savecurrenttime,productrandomkey;
@@ -40,7 +41,7 @@ public class paymentActivity extends AppCompatActivity
     String eee="";
     TextView yes;
     final int UPI_PAYMENT=0;
-    private DatabaseReference productRef,ProductRef2;
+    private DatabaseReference productRef,ProductRef2,ProductRef3;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,16 +59,17 @@ public class paymentActivity extends AppCompatActivity
 
         productRef= FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View").child(Prevalent.currentOnlineuser.getPhone()).child("Products");
         ProductRef2=FirebaseDatabase.getInstance().getReference().child("Mine").child(Prevalent.currentOnlineuser.getPhone());
+        ProductRef3=FirebaseDatabase.getInstance().getReference().child("Admins");
 
-       names= getIntent().getStringExtra("names");
+        names= getIntent().getStringExtra("names");
        phones=getIntent().getStringExtra("phones");
        addresses=getIntent().getStringExtra("addresses");
        states=getIntent().getStringExtra("states");
        picodes=getIntent().getStringExtra("pincodes");
        totalamount=getIntent().getStringExtra("totalamount");
 
-        Toast.makeText(this, names, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, phones, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, names, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, phones, Toast.LENGTH_SHORT).show();
 
         trnID=(TextView)findViewById(R.id.transactionID);
         paywithgl=(Button)findViewById(R.id.paywithgl);
@@ -77,8 +79,32 @@ public class paymentActivity extends AppCompatActivity
         amount=(TextView) findViewById(R.id.payment);
         amount.setText(totalamount);
         yes.setText(totalamount+" RS");
-        id.setText("aravindselvam03-1@okaxis");
+
+
+
+       //id.setText("aravindselvam03-1@okaxis");
         name.setText("ADMIN");
+
+        DatabaseReference UsersRef= FirebaseDatabase.getInstance().getReference().child("Admins").child("+917904168617");
+        UsersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+            if(dataSnapshot.child("UPI id").exists())
+            {
+            idi=dataSnapshot.child("UPI id").getValue().toString();
+            id.setText(idi);
+            }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         paywithgl.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +124,7 @@ public class paymentActivity extends AppCompatActivity
                 }
                 else
                 {
-                    payusingUPI("Aravind Kimonn", "pl.7904168617@icici",
-                            amount.getText().toString());
+                    payusingUPI("Aravind Kimonn", idi, amount.getText().toString());
                 }
             }
         });
@@ -176,7 +201,7 @@ public class paymentActivity extends AppCompatActivity
         {
 
             moveGameRoom(productRef,ProductRef2);
-            Toast.makeText(this, "IRUKU", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "IRUKU", Toast.LENGTH_SHORT).show();
             confirmation();
 
             Intent intent = new Intent(paymentActivity.this,PlacedsuccessfullyActivity.class);
@@ -185,7 +210,7 @@ public class paymentActivity extends AppCompatActivity
         }
         else
         {
-            Toast.makeText(this, "ILA", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "ILA", Toast.LENGTH_SHORT).show();
         }
         //Toast.makeText(this, eee, Toast.LENGTH_SHORT).show();
         trnID.setText(trnsID);

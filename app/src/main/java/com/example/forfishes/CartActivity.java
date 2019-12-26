@@ -30,8 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class CartActivity extends AppCompatActivity
-{
+public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView emptycart;
     private RecyclerView.LayoutManager layoutManager;
@@ -56,12 +55,12 @@ public class CartActivity extends AppCompatActivity
         cartlistRefu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-           if(!dataSnapshot.exists())
-           {
-               Toast.makeText(CartActivity.this, "Empty Cart", Toast.LENGTH_SHORT).show();
-                emptycart.setVisibility(View.VISIBLE);
-                nextprocessbtn.setVisibility(View.INVISIBLE);
-           }
+                if(!dataSnapshot.exists())
+                {
+                    Toast.makeText(CartActivity.this, "Empty Cart", Toast.LENGTH_SHORT).show();
+                    emptycart.setVisibility(View.VISIBLE);
+                    nextprocessbtn.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -73,12 +72,12 @@ public class CartActivity extends AppCompatActivity
         nextprocessbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               totalamount.setText("Total Price ="+String.valueOf(totalvalue));
+                totalamount.setText("Total Price ="+String.valueOf(totalvalue));
 
                 Intent intent = new Intent(CartActivity.this, confirmorderActivity.class);
-                        intent.putExtra("Total Price", String.valueOf(totalvalue));
-                        startActivity(intent);
-                        finish();
+                intent.putExtra("Total Price", String.valueOf(totalvalue));
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -103,22 +102,23 @@ public class CartActivity extends AppCompatActivity
                 holder.txtproductid.setText("" +model.getPid());
                 imageq=holder.txtproductid.getText().toString();
 
-                final DatabaseReference imageslist = FirebaseDatabase.getInstance().getReference().child("Products").child(imageq);
+                final DatabaseReference imageslist = FirebaseDatabase.getInstance().getReference()
+                       /* .child("Cart List")
+                        .child("User View")
+                        .child(Prevalent.currentOnlineuser.getPhone())*/
+                        .child("Products").child(imageq);
                 imageslist.addValueEventListener(new ValueEventListener()
                 {@Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
                     String p1=dataSnapshot.child("image").getValue().toString();
-                        Picasso.get().load(p1).into(holder.imageofit);
-                      //=----  Toast.makeText(CartActivity.this, p1, Toast.LENGTH_SHORT).show();
-                    }
-
+                    Picasso.get().load(p1).into(holder.imageofit);
+                    //=----  Toast.makeText(CartActivity.this, p1, Toast.LENGTH_SHORT).show();
+                }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
-
                 holder.txtProductname.setText(model.getPname());
                 holder.txtproductprice.setText("Price per unit: "+model.getPrice());
 
@@ -155,27 +155,18 @@ public class CartActivity extends AppCompatActivity
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task)
                                                 {
-                                                 if(task.isSuccessful())
-                                                 {
+                                                    if(task.isSuccessful())
+                                                    {
+                                                        cartlistRef.child("Admin View").child(Prevalent.currentOnlineuser.getPhone())
+                                                                .child("Products")
+                                                                .child(model.getPid())
+                                                                .removeValue();
+                                                        Toast.makeText(CartActivity.this, "Item removed from the cart successfully", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(CartActivity.this, endusers.class);
 
-                                                  cartlistRef.child("Admin View").child(Prevalent.currentOnlineuser.getPhone())
-                                                          .child("Products")
-                                                          .child(model.getPid())
-                                                          .removeValue()
-                                                          .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                              @Override
-                                                              public void onComplete(@NonNull Task<Void> task) {
-                                                             if(task.isSuccessful())
-                                                             {
-                                                                 Toast.makeText(CartActivity.this, "Item removed from the cart successfully", Toast.LENGTH_SHORT).show();
-                                                                 Intent intent = new Intent(CartActivity.this, endusers.class);
+                                                        startActivity(intent);
 
-                                                                 startActivity(intent);
-                                                             }
-                                                              }
-                                                          });
-
-                                                 }
+                                                    }
                                                 }
                                             });
                                 }
@@ -209,43 +200,36 @@ public class CartActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-            if(dataSnapshot.exists())
-            {
-                String shippingstate = dataSnapshot.child("state").getValue().toString();
-                String userName = dataSnapshot.child("name").getValue().toString();
-                if(shippingstate.equals("shipped"))
+                if(dataSnapshot.exists())
                 {
-                totalamount.setText("Dear" + userName + "\n order is shipped successfully");
-                recyclerView.setVisibility(View.GONE);
-                txtmsg1.setVisibility(View.VISIBLE);
-                txtmsg1.setText("SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!");
-                nextprocessbtn.setVisibility(View.GONE);
-                    Toast.makeText(CartActivity.this, "You can purchase more products, once you received your alredy placed order", Toast.LENGTH_SHORT).show();
-                }
-                else if(shippingstate.equals("not shipped"))
-                {
+                    String shippingstate = dataSnapshot.child("state").getValue().toString();
+                    String userName = dataSnapshot.child("name").getValue().toString();
+                    if(shippingstate.equals("shipped"))
+                    {
+                        totalamount.setText("Dear" + userName + "\n order is shipped successfully");
+                        recyclerView.setVisibility(View.GONE);
+                        txtmsg1.setVisibility(View.VISIBLE);
+                        txtmsg1.setText("SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!");
+                        nextprocessbtn.setVisibility(View.GONE);
+                        Toast.makeText(CartActivity.this, "You can purchase more products, once you received your alredy placed order", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(shippingstate.equals("not shipped"))
+                    {
 
-                    totalamount.setText("Dear" + userName + "\n order is Yet to be Dispatch");
-                    recyclerView.setVisibility(View.GONE);
-                    txtmsg1.setVisibility(View.VISIBLE);
-                    txtmsg1.setText("SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!");
-                    nextprocessbtn.setVisibility(View.GONE);
-                    Toast.makeText(CartActivity.this, "You can purchase more products, once you received your alredy placed order", Toast.LENGTH_SHORT).show();
+                        totalamount.setText("Dear" + userName + "\n order is Yet to be Dispatch");
+                        recyclerView.setVisibility(View.GONE);
+                        txtmsg1.setVisibility(View.VISIBLE);
+                        txtmsg1.setText("SORRY! You cannot add your next order until your order has shipped, Don't worry within 24-48 hours your order will be dispatched to your location.!");
+                        nextprocessbtn.setVisibility(View.GONE);
+                        Toast.makeText(CartActivity.this, "You can purchase more products, once you received your alredy placed order", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
-            }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(CartActivity.this, endusers.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 }

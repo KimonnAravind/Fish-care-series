@@ -24,6 +24,18 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <ImageView
+        android:layout_width="354dp"
+        android:layout_height="245dp"
+        android:id="@+id/biller"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="77dp"
+        android:background="@android:color/white" />
+
     <TextView
         android:id="@+id/currenthistory"
         android:layout_width="375dp"

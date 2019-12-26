@@ -87,7 +87,15 @@
         android:inputType="number"
         android:textAlignment="center" />
 
-    <EditText
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="294dp"
+        android:text="If you want you can change your state details in Settings.!" />
+
+    <TextView
         android:id="@+id/displaystate"
         android:layout_width="281dp"
         android:layout_height="40dp"
@@ -98,6 +106,9 @@
         android:layout_marginTop="427dp"
         android:background="@drawable/input_design"
         android:hint="@string/state"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         android:inputType="text"
         android:textAlignment="center" />
 
@@ -107,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="248dp"
+        android:layout_marginBottom="226dp"
         android:background="@drawable/button"
         android:inputType="number"
         android:text="Proceed to payment" />
@@ -136,7 +147,7 @@
         android:background="@drawable/input_design"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="25sp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

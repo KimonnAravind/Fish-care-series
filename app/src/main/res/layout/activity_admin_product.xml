@@ -14,9 +14,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="137dp"
+        android:layout_marginStart="131dp"
 
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="228dp"
         android:text="ACCESSORIES"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -28,9 +28,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="146dp"
+        android:layout_marginStart="142dp"
 
-        android:layout_marginTop="325dp"
+        android:layout_marginTop="329dp"
         android:text="FISH FOOD"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -42,7 +42,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="125dp"
+        android:layout_marginStart="120dp"
 
         android:layout_marginTop="431dp"
         android:text="FISH MEDICINE"
@@ -55,9 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="78dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="158dp"
 
+        android:layout_marginTop="132dp"
         android:text="COMBO"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -65,13 +66,14 @@
 
     <LinearLayout
         android:id="@+id/LinearLayoutCategory1"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_width="275dp"
+        android:layout_height="86dp"
         android:layout_alignParentStart="true"
 
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="13dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -81,8 +83,7 @@
             android:layout_height="171dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="42dp"
+
             android:src="@drawable/combo" />
 
 
@@ -97,9 +98,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
 
+        android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="161dp"
+        android:layout_marginEnd="0dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -112,7 +115,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="0dp"
-            android:src="@drawable/accessories" />
+            android:src="@drawable/acc" />
 
     </LinearLayout>
 
@@ -127,9 +130,9 @@
         android:layout_alignParentEnd="true"
 
         android:layout_centerVertical="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="253dp"
+        android:layout_marginEnd="3dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -157,9 +160,9 @@
         android:layout_alignParentEnd="true"
 
         android:layout_centerVertical="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="355dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="-5dp"
+        android:layout_marginTop="354dp"
+        android:layout_marginEnd="7dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -172,7 +175,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="0dp"
-            android:src="@drawable/fishmedicing" />
+            android:src="@drawable/fishm" />
 
     </LinearLayout>
 
@@ -183,8 +186,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="183dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="143dp"
         android:background="@drawable/button"
         android:text="@string/customise_product_details"
         android:textSize="20sp"
@@ -197,8 +200,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="125dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="198dp"
 
         android:background="@drawable/button"
         android:text="@string/check_placed_orders"
@@ -212,8 +215,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="86dp"
 
         android:background="@drawable/button"
         android:text="Shipping charges and UPI id"
@@ -227,8 +230,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="1dp"
         android:background="@drawable/button"
         android:text="@string/Logout"
 

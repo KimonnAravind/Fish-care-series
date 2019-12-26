@@ -3,6 +3,7 @@ package com.example.forfishes;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +16,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class OrderStatusActivity extends AppCompatActivity
 {
-    DatabaseReference ordersreference,ordersreference1,ordersreference2;
-
+    DatabaseReference ordersreference,ordersreference1,ordersreference2,orderrefeerence3;
+    private ImageView bille;
     private Button elabrate;
     private TextView one,two,three,four;
     @Override
@@ -33,7 +35,8 @@ public class OrderStatusActivity extends AppCompatActivity
                 .child(Prevalent.currentOnlineuser.getPhone());
         ordersreference2=FirebaseDatabase.getInstance().getReference().child("Mine")
                 .child(Prevalent.currentOnlineuser.getPhone());
-
+        orderrefeerence3=FirebaseDatabase.getInstance().getReference().child("Mine").child(Prevalent.currentOnlineuser.getPhone());
+        bille=(ImageView)findViewById(R.id.biller);
 
 
         one=(TextView)findViewById(R.id.orderHistor);
@@ -67,7 +70,30 @@ public class OrderStatusActivity extends AppCompatActivity
                                 }
                                 else
                                 {
+                                    bille.setVisibility(View.VISIBLE);
+                                    orderrefeerence3.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                        {
+                                            if(dataSnapshot.child("tracking details").exists())
+                                            {
+                                                String image = dataSnapshot.child("tracking details").getValue().toString();
+                                                Picasso.get().load(image).into(bille);
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(OrderStatusActivity.this, "Unavailable", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
                                     four.setVisibility(View.VISIBLE);
+
+
                                 }
                                 }
 

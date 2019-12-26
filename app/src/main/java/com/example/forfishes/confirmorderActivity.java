@@ -22,7 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
     private EditText name, phone, address, pincode;
     private Button placeorderbtn;
-    private EditText disstate;
+    private TextView disstate;
+    String Tn,Ka,Kr;
+    String sta;
     private int a = 0;
     private String totalamount = "";
     private TextView totalpriceamountS;
@@ -41,7 +43,7 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
 
         totalpriceamountS = (TextView) findViewById(R.id.totalpriceamounts);
         userreference = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
-        disstate = (EditText) findViewById(R.id.displaystate);
+        disstate = (TextView) findViewById(R.id.displaystate);
         phone = (EditText) findViewById(R.id.shippingphonenumber);
         address = (EditText) findViewById(R.id.shippingaddress);
         productReferances = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
@@ -57,11 +59,15 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
     }
 
 
-    private void displayproductinfo() {
-        totalpriceamountS.setText(totalamount);
-        productReferances.addValueEventListener(new ValueEventListener() {
+    private void displayproductinfo()
+    {
+        productReferances.addValueEventListener(new ValueEventListener()
+        {
+
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+
                 if (dataSnapshot.exists()) {
 
                     name.setText(dataSnapshot.child("name").getValue().toString());
@@ -69,6 +75,8 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
                     address.setText(dataSnapshot.child("address").getValue().toString());
                     pincode.setText(dataSnapshot.child("pincode").getValue().toString());
                     disstate.setText(dataSnapshot.child("State").getValue().toString());
+
+                    sta=dataSnapshot.child("State").getValue().toString();
 
                 }
             }
@@ -78,6 +86,48 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
 
             }
         });
+        /*totalpriceamountS.setText(totalamount);*/
+        DatabaseReference chargesref;
+        chargesref=FirebaseDatabase.getInstance().getReference().child("Admins").child("+917904168617");
+
+        chargesref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                Tn=dataSnapshot.child("Tamilnadu").getValue().toString();
+                 Kr=dataSnapshot.child("Kerala").getValue().toString();
+                 Ka=dataSnapshot.child("Karnataka").getValue().toString();
+
+                Toast.makeText(confirmorderActivity.this, sta, Toast.LENGTH_SHORT).show();
+                if(sta.equals("TAMILNADU"))
+                {
+                    totalpriceamountS.setText(totalamount+" RS +"+ Tn+ " RS Minimum courier charge will be applicalble for this order");
+                }
+                else if(sta.equals("KERALA"))
+                {
+                    totalpriceamountS.setText(totalamount+" RS +"+ Kr+ " RS Minimum courier charge will be applicalble for this order");
+
+                }
+                else if(sta.equals("KARNATAKA"))
+                {
+                    totalpriceamountS.setText(totalamount+" RS +"+ Ka+ " RS Minimum courier charge will be applicalble for this order");
+                }
+                else
+                {
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 

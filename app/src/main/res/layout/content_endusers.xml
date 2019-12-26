@@ -12,6 +12,7 @@
     <RelativeLayout
         android:layout_width="70dp"
         android:layout_height="725dp"
+        android:id="@+id/hide"
         android:layout_gravity="right">
 
         <TextView

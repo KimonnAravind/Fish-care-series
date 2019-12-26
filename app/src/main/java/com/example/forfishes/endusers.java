@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,19 +47,24 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
     private String type="";
     private TextView ssbc;
     private ImageView combos,second,third,fourt;
-    
+    private RelativeLayout hides;
     private DatabaseReference productRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_endusers);
-
+        hides=(RelativeLayout)findViewById(R.id.hide);
         Intent intent= getIntent();
         Bundle bundle = intent.getExtras();
         if(bundle!= null)
         {
             type=getIntent().getExtras().get("Admin").toString();
+            if(type.equals("Admin"))
+            {
+                hides.setVisibility(View.GONE);
+
+            }
         }
 
         ssbc=(TextView)findViewById(R.id.sbc);
@@ -99,9 +105,8 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         View headerView = navigationView.getHeaderView(0);
+
         TextView userNamTextView= headerView.findViewById(R.id.user_profile_name);
         CircleImageView userProfilePicture= headerView.findViewById(R.id.user_profile_image);
 

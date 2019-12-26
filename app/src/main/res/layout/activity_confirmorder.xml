@@ -84,7 +84,7 @@
         android:inputType="number"
         android:textAlignment="center" />
 
-    <EditText
+    <TextView
         android:id="@+id/displaystate"
         android:layout_width="281dp"
         android:layout_height="40dp"
@@ -93,6 +93,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="53dp"
         android:layout_marginTop="427dp"
+        android:textSize="20sp"
         android:background="@drawable/input_design"
         android:hint="@string/state"
         android:inputType="text"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import io.paperdb.Paper;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inphone, inpass;
+    private RelativeLayout bkk;
     private Button goin;
     private CheckBox CheckBoxRememberme;
     private TextView admin, forgotpassword;
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        bkk=(RelativeLayout)findViewById(R.id.bsk);
         CheckBoxRememberme = findViewById(R.id.checkBox);
         forgotpassword = (TextView) findViewById(R.id.ForgetPassword);
         inphone = (EditText) findViewById(R.id.editText);
@@ -49,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         goin = (Button) findViewById(R.id.button);
         Paper.init(this);
         loadingBar1 = new ProgressDialog(this);
+
 
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +118,15 @@ public class LoginActivity extends AppCompatActivity {
         {
             Paper.book().write(Prevalent.userPhoneKey,innphone);
             Paper.book().write(Prevalent.userPasswordKey,password);
+
+            if(parentdbname.equals("Admins") )
+            {
+                Paper.book().write(Prevalent.dbname,parentdbname);
+            }
+            else
+            {
+                Paper.book().write(Prevalent.dbname,parentdbname);
+            }
         }
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
@@ -166,6 +179,14 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
     }
 
 }

@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.paperdb.Paper;
+
 public class AdminProductActivity extends AppCompatActivity {
     private ImageView fish,accessories,food,Medicine;
     private Button placedorderbtn;
@@ -48,10 +50,11 @@ public class AdminProductActivity extends AppCompatActivity {
         LogoutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminProductActivity.this , MainActivity.class );
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent intent = new Intent(AdminProductActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finish();
+
+                Paper.book().destroy();
             }
         });
 

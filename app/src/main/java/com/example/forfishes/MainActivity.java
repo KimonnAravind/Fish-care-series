@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
   private Button Joinnowbutton, Existinguserbutton, gotopayment;
     private ProgressDialog loadingBar1;
+    String dbname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
         String userPhoneKey = Paper.book().read(Prevalent.userPhoneKey);
         String userPasswordKey= Paper.book().read(Prevalent.userPasswordKey);
-
+        dbname=Paper.book().read(Prevalent.dbname);
 
         if(userPhoneKey!="" && userPasswordKey!="")
         {
@@ -81,45 +82,79 @@ public class MainActivity extends AppCompatActivity {
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
 
+        if(dbname.equals("Users")) {
 
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Users").child(innphone).exists())
-                {
-                    Users usersData=dataSnapshot.child("Users").child(innphone).getValue(Users.class);
+            RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child("Users").child(innphone).exists()) {
+                        Users usersData = dataSnapshot.child("Users").child(innphone).getValue(Users.class);
 
-                    if(usersData.getPhone().equals(innphone))
-                    {
-                        if(usersData.getPassword().equals(password))
-                        {
+                        if (usersData.getPhone().equals(innphone)) {
+                            if (usersData.getPassword().equals(password)) {
 
                             /*Toast.makeText(MainActivity.this, "LoginSuccessfull", Toast.LENGTH_SHORT).show();
                             loadingBar1.dismiss();*/
-                           Intent intent = new Intent(MainActivity.this, endusers.class);
-                            Prevalent.currentOnlineuser=usersData;
-                           startActivity(intent);
+                                Intent intent = new Intent(MainActivity.this, endusers.class);
+                                Prevalent.currentOnlineuser = usersData;
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                loadingBar1.dismiss();
+                            }
                         }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
-                            loadingBar1.dismiss();
-                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please create a new Account, Account with this number is do not exist", Toast.LENGTH_SHORT).show();
+                        loadingBar1.dismiss();
+                        Toast.makeText(MainActivity.this, "You need to create a new Account", Toast.LENGTH_SHORT).show();
                     }
                 }
-                else
-                {
-                    Toast.makeText(MainActivity.this, "Please create a new Account, Account with this number is do not exist", Toast.LENGTH_SHORT).show();
-                    loadingBar1.dismiss();
-                    Toast.makeText(MainActivity.this, "You need to create a new Account", Toast.LENGTH_SHORT).show();
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
                 }
-            }
+            });
+        }
+        else
+        {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("Admins").child(innphone).exists()) {
+                            Users usersData = dataSnapshot.child("Admins").child(innphone).getValue(Users.class);
+
+                            if (usersData.getPhone().equals(innphone)) {
+                                if (usersData.getPassword().equals(password)) {
+
+                            /*Toast.makeText(MainActivity.this, "LoginSuccessfull", Toast.LENGTH_SHORT).show();
+                            loadingBar1.dismiss();*/
+                                    loadingBar1.dismiss();
+                                    Toast.makeText(MainActivity.this, "You are in", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(MainActivity.this, AdminProductActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                    loadingBar1.dismiss();
+                                }
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "Please create a new Account, Account with this number is do not exist", Toast.LENGTH_SHORT).show();
+                            loadingBar1.dismiss();
+                            Toast.makeText(MainActivity.this, "You need to create a new Account", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+        }
 
     }
 }

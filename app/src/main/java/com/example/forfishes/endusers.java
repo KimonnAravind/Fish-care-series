@@ -260,6 +260,14 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        System.exit(0);
+
     }
 
     @Override
@@ -339,8 +347,17 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
 
 
         }
+        else  if(id== R.id.customercare) {
+            if (!type.equals("Admin")) {
+                Intent intent = new Intent(endusers.this, SupportsActivity.class);
+                startActivity(intent);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+            }
+        }
+
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;

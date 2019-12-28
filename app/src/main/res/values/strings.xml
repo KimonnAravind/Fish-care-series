@@ -156,7 +156,7 @@
     <string name="your_order_has_been_packed_soon_it_will_be_dispatch_to_your_location">Your order has been packed, And soon it will be dispatch to your location.!</string>
     <string name="your_order_is_placed_successfully_we_are_working_on_it_to_dispatch">Your order is placed successfully, We are working on it to dispatch.!</string>
     <string name="your_order_has_been_sent_to_you_through_courier_soon_it_will_reach_you">Your order has been sent to you through courier, soon it will reach you.!</string>
-    <string name="total_amount_payable">Total amount payable</string>
+    <string name="total_amount_payable">Total amount payable including delivery charges:</string>
     <string name="your_order_has_been_placed_succesfully_soon_we_will_deliver_you_product_at_your_door_step">Congradulations.! Your order has been placed succesfully, soon we will deliver you product at your door step, You can check the status of your order in my orders.!</string>
     <string name="click_here_to_go_home">click here to go home.!</string>
     <string name="track_status">Track Status</string>
@@ -168,5 +168,6 @@
     <string name="show_this_order_products">Show this order products</string>
     <string name="tamilnadu">Tamilnadu:</string>
     <string name="tn">Tamilnadu:</string>
+    <string name="customer_care_support"><![CDATA[Customer care & Support]]></string>
 
 </resources>

@@ -286,7 +286,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                         String phone = dataSnapshot.child("phone").getValue().toString();
                         String address = dataSnapshot.child("address").getValue().toString();
                         Picasso.get().load(image).into(profileimageview);
-                        Toast.makeText(SettingsActivity.this, name, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, "Hi "+name, Toast.LENGTH_SHORT).show();
                         fullname.setText(name);
                         userphone.setText(phone);
                         useraddress.setText(address);
@@ -309,7 +309,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
          text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

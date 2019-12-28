@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,15 +40,16 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
     FirebaseAuth mAuth;
     public String forgetpassword="";
     private ProgressDialog loadingBar;
+    private TextView phoninview;
     private Spinner spin;
-    private String   text;
+    private String   text="";
     public String sentcode,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hom);
         editTextphon= findViewById(R.id.phonin);
-
+        phoninview=(TextView)findViewById(R.id.phoninview);
         editTextcode=findViewById(R.id.otpn);
         verifyotpbutt=findViewById(R.id.verifyotp);
         getootp=findViewById(R.id.getotp);
@@ -139,6 +141,8 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!(dataSnapshot.child("Users").child(inphone).exists()))
                 {
+                    if(!text.equals("Select State"))
+                    {
                     HashMap<String,Object> userdatamap = new HashMap<>();
                     userdatamap.put("name", inname);
                     userdatamap.put("phone", inphone);
@@ -158,6 +162,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                                         Toast.makeText(HomActivity.this, "Your Account is created Successfully", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
                                         Intent intent = new Intent(HomActivity.this, LoginActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                     }
                                     else {
@@ -167,6 +172,15 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                                 }
                             });
                 }
+                    else
+                    {
+                        loadingBar.dismiss();
+                        Toast.makeText(HomActivity.this, "Select your state", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+
                 else
                 {
                     Toast.makeText(HomActivity.this, "This"+inphone+"already exist", Toast.LENGTH_SHORT).show();
@@ -259,6 +273,11 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
            editTextcode.setVisibility(View.VISIBLE);
            verifyotpbutt.setVisibility(View.VISIBLE);
            getootp.setVisibility(View.INVISIBLE);
+           editTextphon.setVisibility(View.INVISIBLE);
+           phoninview.setVisibility(View.VISIBLE);
+           phoninview.setText(editTextphon.getText().toString());
+
+
        }
        else
        {
@@ -291,12 +310,22 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-       text = parent.getItemAtPosition(position).toString();
+        text = parent.getItemAtPosition(position).toString();
+
       //  Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(HomActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
     }
 }

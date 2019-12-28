@@ -54,6 +54,21 @@
         android:importantForAutofill="no"
         android:inputType="phone" />
 
+    <TextView
+        android:id="@+id/phoninview"
+        android:layout_width="340dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="35dp"
+        android:textSize="20sp"
+
+        android:layout_marginBottom="245dp"
+        android:background="@drawable/input_design"
+        android:visibility="invisible"
+        />
+
     <EditText
         android:id="@+id/otpn"
         android:layout_width="340dp"

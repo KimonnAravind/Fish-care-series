@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         String userPhoneKey = Paper.book().read(Prevalent.userPhoneKey);
         String userPasswordKey= Paper.book().read(Prevalent.userPasswordKey);
 
+
         if(userPhoneKey!="" && userPasswordKey!="")
         {
             if(!TextUtils.isEmpty(userPhoneKey) && !TextUtils.isEmpty(userPasswordKey))

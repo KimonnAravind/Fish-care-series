@@ -20,12 +20,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
-    private EditText name, phone, address, pincode;
+    private EditText name, address, pincode;
     private Button placeorderbtn;
-    private TextView disstate;
+    private TextView disstate,phone;
     String Tn,Ka,Kr;
     String sta;
     private int a = 0;
+    int f;
     private String totalamount = "";
     private TextView totalpriceamountS;
     private DatabaseReference userreference;
@@ -44,7 +45,7 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
         totalpriceamountS = (TextView) findViewById(R.id.totalpriceamounts);
         userreference = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
         disstate = (TextView) findViewById(R.id.displaystate);
-        phone = (EditText) findViewById(R.id.shippingphonenumber);
+        phone = (TextView) findViewById(R.id.shippingphonenumber);
         address = (EditText) findViewById(R.id.shippingaddress);
         productReferances = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineuser.getPhone());
         pincode = (EditText) findViewById(R.id.shippingpincode);
@@ -98,26 +99,30 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
                  Kr=dataSnapshot.child("Kerala").getValue().toString();
                  Ka=dataSnapshot.child("Karnataka").getValue().toString();
 
-                Toast.makeText(confirmorderActivity.this, sta, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(confirmorderActivity.this, sta, Toast.LENGTH_SHORT).show();
                 if(sta.equals("TAMILNADU"))
                 {
                     totalpriceamountS.setText(totalamount+" RS +"+ Tn+ " RS Minimum courier charge will be applicalble for this order");
+                f=Integer.parseInt(Tn);
                 }
                 else if(sta.equals("KERALA"))
                 {
                     totalpriceamountS.setText(totalamount+" RS +"+ Kr+ " RS Minimum courier charge will be applicalble for this order");
-
+                    f=Integer.parseInt(Kr);
                 }
                 else if(sta.equals("KARNATAKA"))
                 {
                     totalpriceamountS.setText(totalamount+" RS +"+ Ka+ " RS Minimum courier charge will be applicalble for this order");
+                    f=Integer.parseInt(Ka);
                 }
                 else
                 {
-
+                    f=70;
+                    totalpriceamountS.setText(totalamount+" RS +"+ "70"+ " RS Minimum courier charge will be applicalble for this order");
                 }
 
-
+                f=f+Integer.parseInt(totalamount);
+            totalamount=Integer.toString(f);
 
             }
 
@@ -148,13 +153,14 @@ public class confirmorderActivity<onActivityResult> extends AppCompatActivity {
             } else if (TextUtils.isEmpty(pincode.getText().toString())) {
                 Toast.makeText(this, "Please enter your pincode for delivery", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(confirmorderActivity.this, "Your order has been placed successfully", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(confirmorderActivity.this, "Your order has been placed successfully", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(confirmorderActivity.this, paymentActivity.class);
                 intent.putExtra("names", name.getText().toString());
                 intent.putExtra("phones", phone.getText().toString());
                 intent.putExtra("totalamount", totalamount);
                 intent.putExtra("addresses", address.getText().toString());
                 intent.putExtra("states", disstate.getText().toString());
+
                 intent.putExtra("pincodes", pincode.getText().toString());
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

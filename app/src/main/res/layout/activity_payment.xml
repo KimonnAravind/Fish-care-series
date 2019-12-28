@@ -50,26 +50,26 @@
         android:visibility="invisible" />
 
     <TextView
-        android:layout_width="281dp"
-        android:layout_height="83dp"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
 
-        android:layout_marginTop="173dp"
+        android:layout_marginTop="158dp"
         android:text="@string/total_amount_payable"
         android:textAlignment="center"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/paymentso"
-        android:layout_width="249dp"
-        android:layout_height="226dp"
+        android:layout_width="347dp"
+        android:layout_height="203dp"
 
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="205dp"
-        android:layout_marginEnd="73dp"
+        android:layout_marginEnd="23dp"
         android:background="@color/wallet_highlighted_text_holo_dark"
         android:text=""
         android:textAlignment="center"
@@ -117,5 +117,18 @@
         android:layout_marginBottom="-8dp"
         android:background="@drawable/input_design"
         android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="113dp"
+
+        android:layout_marginBottom="183dp"
+        android:text="click here to pay"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

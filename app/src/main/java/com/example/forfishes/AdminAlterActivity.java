@@ -68,15 +68,25 @@ public class AdminAlterActivity extends AppCompatActivity
 
     private void deletethisproduct()
     {
-        productRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        HashMap<String,Object> proMap= new HashMap<>();
+
+        proMap.put("description","Temporarily unavailable");
+        proMap.put("pname","Temporarily unavailable");
+        proMap.put("price","000");
+        productRef.updateChildren(proMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                Toast.makeText(AdminAlterActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(AdminAlterActivity.this, AdminProductActivity.class);
-                startActivity(intent);
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(AdminAlterActivity.this, "Product Deleted", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AdminAlterActivity.this, AdminProductActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+
+
     }
 
 

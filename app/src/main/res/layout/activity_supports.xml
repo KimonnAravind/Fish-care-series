@@ -7,4 +7,58 @@
     android:background="@drawable/wallpapers"
     tools:context=".SupportsActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="204dp"
+        android:text="@string/privacy_policy"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="245dp"
+        android:text="@string/your_personal_information_like_phone_number_password_and_your_order_details_will_be_highly_confidential_and_will_never_be_share_with_anyone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="329dp"
+        android:text="@string/queries_related_to_your_account_orders"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="323dp"
+        android:text="@string/you_can_write_an_email_to_the_below_email_address_or_leave_your_queries_to_the_below_whatsapp_number_you_concern_will_be_resolve_within_24_hours" />
+
+    <TextView
+        android:id="@+id/mailid"
+        android:layout_width="369dp"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="236dp" />
+
+    <TextView
+        android:id="@+id/phonnumber"
+        android:layout_width="369dp"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="260dp"
+        />
 </RelativeLayout>

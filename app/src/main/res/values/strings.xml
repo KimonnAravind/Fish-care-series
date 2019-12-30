@@ -169,5 +169,10 @@
     <string name="tamilnadu">Tamilnadu:</string>
     <string name="tn">Tamilnadu:</string>
     <string name="customer_care_support"><![CDATA[Customer care & Support]]></string>
+    <string name="privacy_policy">Privacy Policy:</string>
+    <string name="your_personal_information_like_phone_number_password_and_your_order_details_will_be_highly_confidential_and_will_never_be_share_with_anyone">Your personal information like phone number, password and your order details will be highly confidential and will never be share with anyone.</string>
+    <string name="incase_of_any_queries_related_to_your_account_order">Incase of any queries, related to your Account/Order</string>
+    <string name="queries_related_to_your_account_orders">Queries related to your Account/Orders:</string>
+    <string name="you_can_write_an_email_to_the_below_email_address_or_leave_your_queries_to_the_below_whatsapp_number_you_concern_will_be_resolve_within_24_hours">You can write an Email to the below email address, or leave your queries to the below whatsapp number, You concern will be resolve within 24 hours.!</string>
 
 </resources>

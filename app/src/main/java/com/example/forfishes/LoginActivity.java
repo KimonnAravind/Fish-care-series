@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog loadingBar1;
     public String forgetpassword = "forgetpassword";
     private String parentdbname = "Users";
-
+    private int i=1;
     FirebaseAuth auth;
 
     @Override
@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         loadingBar1 = new ProgressDialog(this);
 
 
+
+
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +67,13 @@ public class LoginActivity extends AppCompatActivity {
 
         goin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                i=i+1;
+                if(i==10)
+                {
+                admin.setVisibility(View.VISIBLE);
+                }
                 loginuser();
             }
         });

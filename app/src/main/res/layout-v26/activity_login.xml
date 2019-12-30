@@ -9,7 +9,6 @@
     android:background="@drawable/login">
 
 
-
     <EditText
         android:id="@+id/editText"
         android:layout_width="340dp"
@@ -104,6 +103,7 @@
         android:layout_marginEnd="-25dp"
         android:baselineAligned="false"
         android:hint="@string/admininstrative"
+        android:visibility="invisible"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />

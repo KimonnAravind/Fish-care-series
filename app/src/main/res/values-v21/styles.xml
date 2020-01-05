@@ -3,6 +3,6 @@
     <style name="AppTheme" parent= "Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@android:color/darker_gray</item>
+       <!--<item name="android:statusBarColor">@android/white</item>-->
     </style>
 </resources>

@@ -32,7 +32,8 @@ public class FulldetailsActivity extends AppCompatActivity {
     private DatabaseReference cartlistRef;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fulldetails);
 

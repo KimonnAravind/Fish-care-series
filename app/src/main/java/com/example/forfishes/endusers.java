@@ -24,7 +24,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.forfishes.Fish.Prevalent.Prevalent;
 import com.example.forfishes.Model.Products;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

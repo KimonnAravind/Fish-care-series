@@ -63,7 +63,6 @@ public class FulldetailsActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, final int position, @NonNull cart model)
             {
-
                 holder.txtproductid.setText(""+ model.getImagelink());
                 String newss= holder.txtproductid.getText().toString();
                 Toast.makeText(FulldetailsActivity.this, newss, Toast.LENGTH_SHORT).show();
@@ -132,9 +131,6 @@ public class FulldetailsActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
         cartList.setAdapter(adapter);

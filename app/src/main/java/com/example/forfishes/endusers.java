@@ -189,9 +189,6 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
         FirebaseRecyclerOptions<Products> options=
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(sortposterinDecendingOrder, Products.class)
                         .build();
-
-
-
         FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>adapter=new FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull com.example.forfishes.ProductViewHolder holder, int position, @NonNull final Products model) {
@@ -199,7 +196,6 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price: "+model.getPrice()+" RS");
                 Picasso.get().load(model.getImage()).into(holder.imageView);
-
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v)

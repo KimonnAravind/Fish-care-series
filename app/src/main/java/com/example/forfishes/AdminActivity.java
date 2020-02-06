@@ -82,8 +82,8 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
-    private void openGallery() {
-
+    private void openGallery()
+    {
         Intent galleryIntent = new Intent();
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -101,12 +101,9 @@ public class AdminActivity extends AppCompatActivity {
         ImageUri=data.getData();
         uploadanImage.setImageURI(ImageUri);
         }
-
-
     }
   private void ValidateProductData()
     {
-
         description=productDescription.getText().toString();
         name=productName.getText().toString();
         price=productPrice.getText().toString();
@@ -127,9 +124,7 @@ public class AdminActivity extends AppCompatActivity {
             Toast.makeText(this, "Product price is required", Toast.LENGTH_SHORT).show();
         }
         else {
-
             StoreProductInformation();
-            // Toast.makeText(AdminActivity.this, "Step 1 is Perfect", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -175,7 +170,8 @@ public class AdminActivity extends AppCompatActivity {
     }
     private void StoreProductInformation()
     {
-        productref.addValueEventListener(new ValueEventListener() {
+        productref.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {

@@ -34,7 +34,7 @@
             android:layout_width="224dp"
             android:layout_height="219dp"
             android:layout_below="@+id/product_name"
-            android:src="@drawable/loads"
+            android:src="@android:color/darker_gray"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="3dp"

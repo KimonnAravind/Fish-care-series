@@ -97,7 +97,6 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
 
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle =new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -132,7 +131,7 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
         recyclerView= findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.   setLayoutManager(layoutManager);
 
         combos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,10 +174,6 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
             }
         });
     }
-
-
-
-
     @Override
     protected void onStart()
     {
@@ -189,8 +184,11 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
         FirebaseRecyclerOptions<Products> options=
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(sortposterinDecendingOrder, Products.class)
                         .build();
-        FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>adapter=new FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>(options) {
+
+        FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>adapter=new FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>(options)
+        {
             @Override
+
             protected void onBindViewHolder(@NonNull com.example.forfishes.ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
@@ -212,14 +210,9 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
                             intent.putExtra("pid", model.getPid());
                             startActivity(intent);
                         }
-
-
                     }
                 });
-
-
             }
-
             @NonNull
             @Override
             public com.example.forfishes.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -232,7 +225,6 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
             }
 
         };
-
         recyclerView.setAdapter(adapter);
         adapter.startListening();
 
@@ -334,13 +326,8 @@ public class endusers<onBackPressed> extends AppCompatActivity implements Naviga
                 Intent intent = new Intent(endusers.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-
                 Paper.book().destroy();
-
-
             }
-
-
         }
         else  if(id== R.id.customercare) {
             if (!type.equals("Admin")) {

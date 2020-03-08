@@ -145,7 +145,6 @@ public class SearchproductActivity extends AppCompatActivity
         FirebaseRecyclerOptions<Products> options= new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(reference.orderByChild("pname").startAt(searchinput),Products.class)
                 .build();
-        ;
 
 
         FirebaseRecyclerAdapter<Products, com.example.forfishes.ProductViewHolder>adapter =

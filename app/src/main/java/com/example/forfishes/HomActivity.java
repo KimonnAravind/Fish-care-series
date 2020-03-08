@@ -250,7 +250,8 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
                 });
     }
 
-    private void sendverificationcode() {
+    private void sendverificationcode()
+    {
         String phoneNumber = editTextphon.getText().toString();
         int a=phoneNumber.length();
        if(phoneNumber.startsWith("+91")&&a==13) {
@@ -284,9 +285,11 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
            Toast.makeText(this, "Invalid phone number enter your 10 digit phone number with the code +91**********", Toast.LENGTH_SHORT).show();
        }
     }
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks()
+    {
         @Override
-        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential)
+        {
 
         }
 
@@ -298,11 +301,7 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
-
             sentcode = s;
-
-
-
         }
 
 
@@ -325,7 +324,6 @@ public class HomActivity extends AppCompatActivity implements AdapterView.OnItem
         super.onBackPressed();
         Intent intent = new Intent(HomActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         startActivity(intent);
     }
 }

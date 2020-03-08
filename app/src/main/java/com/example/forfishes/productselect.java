@@ -99,7 +99,6 @@ public class productselect extends AppCompatActivity {
 
         final HashMap<String , Object> cartMap =new HashMap<>();
         cartMap.put("pid", productID);
-
         cartMap.put("pname", productname.getText().toString());
         cartMap.put("price", now);
         cartMap.put("date", savecurrentDate);
@@ -134,7 +133,8 @@ public class productselect extends AppCompatActivity {
                 });
     }
 
-    private void getproductdetails(final String productID) {
+    private void getproductdetails(final String productID)
+    {
         DatabaseReference produtRef= FirebaseDatabase.getInstance().getReference().child("Products");
         produtRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -156,7 +156,8 @@ public class productselect extends AppCompatActivity {
             }
         });
     }
-    private void incranddecr() {
+    private void incranddecr()
+    {
         temp=String.valueOf(a);
         qty.setText(temp);
     }

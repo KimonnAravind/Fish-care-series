@@ -74,7 +74,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         profileChangetxtBtn=(TextView)findViewById(R.id.profile_img_change_btn);
         closeTextBtn=(TextView)findViewById(R.id.close_settings);
         saveTextbtn=(TextView)findViewById(R.id.update_settings);
-
         userinfodisplay(profileimageview,fullname,userphone,useraddress);
     closeTextBtn.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -294,6 +293,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                         pinc.setText(pinss);
 
                     }
+                }
+                else
+                {
+                    Toast.makeText(SettingsActivity.this, "Guest Acc", Toast.LENGTH_SHORT).show();
                 }
             }
 
